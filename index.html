@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebSwan - Cold Call Scripts</title>
+    <style>
+        /* ============================================
+           SCRIPT 1: CUSTOM UX/UI WEB DESIGN
+           Premium, Trust-Building Aesthetic
+        ============================================ */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .swan-container {
+            max-width: 1000px;
+            width: 100%;
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 30px;
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);
+            padding: 40px;
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+
+        /* WebSwan Branding */
+        .webswan-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 35px;
+            padding-bottom: 25px;
+            border-bottom: 3px solid #f2970f;
+        }
+
+        .swan-logo {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(45deg, #1d334a, #f2970f);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            color: white;
+            box-shadow: 0 10px 20px rgba(242,151,15,0.3);
+        }
+
+        .swan-title h1 {
+            color: #1d334a;
+            font-size: 32px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        .swan-title p {
+            color: #f2970f;
+            font-weight: 600;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* Main Script Button - The Star! */
+        .script-toggle-btn {
+            width: 100%;
+            padding: 25px;
+            background: linear-gradient(45deg, #1d334a, #2a4a6a);
+            border: none;
+            border-radius: 20px;
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 15px 30px rgba(29,51,74,0.4);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+            border: 2px solid #f2970f;
+            letter-spacing: 1px;
+        }
+
+        .script-toggle-btn:hover {
+            background: linear-gradient(45deg, #f2970f, #e08a0a);
+            color: #1d334a;
+            transform: translateY(-3px);
+            box-shadow: 0 20px 40px rgba(242,151,15,0.4);
+            border-color: white;
+        }
+
+        .script-toggle-btn i {
+            font-size: 28px;
+        }
+
+        /* Scripts Container - Hidden by Default */
+        .scripts-container {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .scripts-container.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Individual Script Cards */
+        .script-card {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            border-left: 8px solid;
+            transition: all 0.3s;
+        }
+
+        .script-card:hover {
+            transform: translateX(5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+        }
+
+        .script-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .script-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+
+        .script-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1d334a;
+        }
+
+        .script-subtitle {
+            color: #666;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+
+        /* Script Content - Cold Call Scripts */
+        .script-content {
+            background: #f8faff;
+            padding: 25px;
+            border-radius: 15px;
+            margin: 20px 0;
+            line-height: 1.8;
+            color: #2d3748;
+            font-size: 16px;
+            border: 1px solid #e2e8f0;
+            position: relative;
+        }
+
+        .script-content strong {
+            color: #f2970f;
+        }
+
+        .script-content em {
+            color: #1d334a;
+            font-style: italic;
+            background: rgba(242,151,15,0.1);
+            padding: 2px 8px;
+            border-radius: 5px;
+        }
+
+        /* Links Section with Copy Buttons */
+        .links-section {
+            margin-top: 25px;
+            border-top: 2px dashed #e2e8f0;
+            padding-top: 25px;
+        }
+
+        .links-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #1d334a;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .link-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: white;
+            padding: 12px 20px;
+            border-radius: 12px;
+            margin-bottom: 12px;
+            border: 1px solid #e2e8f0;
+            transition: all 0.2s;
+        }
+
+        .link-item:hover {
+            background: #f7fafc;
+            border-color: #f2970f;
+        }
+
+        .link-url {
+            color: #1d334a;
+            text-decoration: none;
+            font-size: 14px;
+            word-break: break-all;
+            flex: 1;
+            padding-right: 15px;
+        }
+
+        .link-url:hover {
+            color: #f2970f;
+        }
+
+        .copy-btn {
+            background: #1d334a;
+            color: white;
+            border: none;
+            padding: 8px 18px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .copy-btn:hover {
+            background: #f2970f;
+            transform: scale(1.05);
+        }
+
+        .copy-btn.copied {
+            background: #10b981;
+        }
+
+        /* Card Colors */
+        .card-1 { border-left-color: #f2970f; }
+        .card-2 { border-left-color: #ef4444; }
+        .card-3 { border-left-color: #3b82f6; }
+
+        /* Compliance Badge */
+        .compliance-badge {
+            display: inline-block;
+            background: #fee2e2;
+            color: #ef4444;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-left: 15px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .swan-container {
+                padding: 25px;
+            }
+            
+            .script-toggle-btn {
+                font-size: 18px;
+                padding: 20px;
+            }
+            
+            .script-title {
+                font-size: 20px;
+            }
+            
+            .link-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+            
+            .copy-btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="swan-container">
+    <!-- WebSwan Header -->
+    <div class="webswan-header">
+        <div class="swan-logo">
+            🦢
+        </div>
+        <div class="swan-title">
+            <h1>WebSwan</h1>
+            <p>Judith's Cold Call Scripts • 2026</p>
+        </div>
+    </div>
+
+    <!-- MAIN SCRIPT BUTTON - Click to Reveal All Scripts -->
+    <button class="script-toggle-btn" onclick="toggleScripts()">
+        <span style="font-size: 28px;">📋</span> 
+        WebSwan Script Suite
+        <span style="font-size: 28px;">📞</span>
+    </button>
+
+    <!-- SCRIPTS CONTAINER - All 3 Scripts with Links -->
+    <div id="scriptsContainer" class="scripts-container">
+        
+        <!-- ============================================ -->
+        <!-- SCRIPT 1: CUSTOM UX/UI WEB DESIGN (Judith)   -->
+        <!-- ============================================ -->
+        <div class="script-card card-1">
+            <div class="script-header">
+                <div class="script-icon" style="background: rgba(242,151,15,0.1); color: #f2970f;">🎨</div>
+                <div>
+                    <div class="script-title">Custom UX/UI Web Design</div>
+                    <div class="script-subtitle">Free Demo • 5 Businesses Only • No Obligation</div>
+                </div>
+            </div>
+
+            <div class="script-content">
+                <p style="font-size: 18px; font-weight: 600; color: #1d334a; margin-bottom: 15px;">🎯 Judith's Cold Call Script:</p>
+                
+                <p style="margin-bottom: 15px;"><span style="background: #f2970f; color: white; padding: 3px 10px; border-radius: 15px; font-weight: 600;">OPENING</span></p>
+                
+                <p style="margin-bottom: 20px;"><strong>"Hi this is Judith with WebSwan.</strong> I'm a custom web designer and I create professional UX/UI web design for businesses like yours.</p>
+                
+                <p style="margin-bottom: 20px;">Today I'm doing a <strong style="color: #f2970f; font-size: 18px;">FREE DEMO for 5 businesses</strong> at no cost, no obligation. This would give you an idea of how we can help you show up on search engines professionally and build trust with your customers."</p>
+                
+                <p style="margin-bottom: 15px;"><span style="background: #1d334a; color: white; padding: 3px 10px; border-radius: 15px; font-weight: 600;">QUALIFYING QUESTIONS</span></p>
+                
+                <p style="margin-bottom: 10px;">✅ <strong>Would you be interested in seeing your business free demo?</strong></p>
+                <p style="margin-bottom: 10px;">✅ <strong>What is the name of your business?</strong></p>
+                <p style="margin-bottom: 10px;">✅ <strong>Do you have an existing website?</strong> (If yes, get URL)</p>
+                <p style="margin-bottom: 20px;">✅ <strong>What is the best time to reach out and best number?</strong> (Need 10-15 min to present)</p>
+                
+                <p style="margin-bottom: 15px;"><span style="background: #ef4444; color: white; padding: 3px 10px; border-radius: 15px; font-weight: 600;">OBJECTION HANDLING</span></p>
+                
+                <p style="margin-bottom: 15px;"><em>"Can you just email me the demo?"</em></p>
+                <p style="margin-bottom: 20px; background: #fff4e5; padding: 12px; border-radius: 10px;"><strong>Response:</strong> "I apologize, but to protect our intellectual property and the quality of our work, we don't email demos. Since this is a complimentary service valued at $395, we present it personally via phone or Zoom to ensure you see everything properly. Would a quick 10-minute Zoom call work better for you?"</p>
+                
+                <p style="margin-bottom: 10px;"><span style="background: #10b981; color: white; padding: 3px 10px; border-radius: 15px; font-weight: 600;">TIMELINE</span></p>
+                <p style="margin-bottom: 5px;"><strong>⏱️ Demo build time:</strong> 2-3 business days</p>
+                <p><strong>📅 Presentation:</strong> 10-15 minute phone/Zoom call</p>
+            </div>
+
+            <!-- SCRIPT 1 LINKS with Copy Buttons -->
+            <div class="links-section">
+                <div class="links-title">
+                    <span>🔗</span> Custom Web Design Resources
+                </div>
+                
+                <div class="link-item">
+                    <a href="https://www.google.com/search?q=price+range+for+custom+web+design+ux+ui+from+web+developer&rlz=1CAIPNW_enUS1176&oq=price+range+for+custom+web+design+ux+ui+from+web+developer&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIHCAEQIRigATIHCAIQIRigATIHCAMQIRigATIHCAQQIRirAtIBCTEyNzQ5ajBqOagCALACAA&sourceid=chrome&ie=UTF-8" target="_blank" class="link-url">
+                        📊 Custom Web Design Pricing Research
+                    </a>
+                    <button class="copy-btn" onclick="copyLink(this, 'https://www.google.com/search?q=price+range+for+custom+web+design+ux+ui+from+web+developer&rlz=1CAIPNW_enUS1176&oq=price+range+for+custom+web+design+ux+ui+from+web+developer&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIHCAEQIRigATIHCAIQIRigATIHCAMQIRigATIHCAQQIRirAtIBCTEyNzQ5ajBqOagCALACAA&sourceid=chrome&ie=UTF-8')">
+                        📋 Copy Link
+                    </button>
+                </div>
+                
+                <div class="link-item">
+                    <a href="https://manage.multisiteadmin.com/lead_generator" target="_blank" class="link-url">
+                        🎯 WebSwan Prospect Tool
+                    </a>
+                    <button class="copy-btn" onclick="copyLink(this, 'https://manage.multisiteadmin.com/lead_generator')">
+                        📋 Copy Link
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ============================================ -->
+        <!-- SCRIPT 2: WEBSITE COMPLIANCE & SSL           -->
+        <!-- ============================================ -->
+        <div class="script-card card-2">
+            <div class="script-header">
+                <div class="script-icon" style="background: rgba(239,68,68,0.1); color: #ef4444;">⚖️</div>
+                <div>
+                    <div class="script-title">Website Compliance & SSL Audit</div>
+                    <div class="script-subtitle">Free $395 Audit • State Attorney Compliance</div>
+                </div>
+            </div>
+
+            <div class="script-content">
+                <p style="font-size: 18px; font-weight: 600; color: #1d334a; margin-bottom: 15px;">⚖️ Judith's Compliance Script:</p>
+                
+                <p style="margin-bottom: 15px;"><span style="background: #ef4444; color: white; padding: 3px 10px; border-radius: 15px; font-weight: 600;">OPENING</span></p>
+                
+                <p style="margin-bottom: 20px;"><strong>"Hi this is Judith with WebSwan.</strong> Your website is among a list of businesses that may not be in full compliance with state attorney regulations, which could potentially lead to legal issues and penalties.</p>
+                
+                <p style="margin-bottom: 20px;">I'm calling to offer you a <strong style="color: #ef4444; font-size: 18px;">FREE Website Compliance Audit</strong> — this normally costs $395, but today we're offering it at no cost to 5 businesses in your area."</p>
+                
+                <p style="margin-bottom: 15px;"><span style="background: #1d334a; color: white; padding: 3px 10px; border-radius: 15px; font-weight: 600;">SSL CERTIFICATE SCRIPT</span></p>
+                
+                <p style="margin-bottom: 15px; background: #fff0f0; padding: 15px; border-radius: 10px;">
+                    <strong>🔐 "I also noticed your site may not have an active SSL certificate.</strong> This means search engines like Google will display 'Not Secure' warnings to anyone trying to visit your website. It often indicates an outdated site that's more vulnerable to hackers and data breaches. We can include SSL security review in your free compliance audit."
+                </p>
+                
+                <p style="margin-bottom: 15px;"><span style="background: #1d334a; color: white; padding: 3px 10px; border-radius: 15px; font-weight: 600;">QUALIFYING QUESTIONS</span></p>
+                
+                <p style="margin-bottom: 10px;">✅ <strong>Would you want a free website compliance audit?</strong></p>
+                <p style="margin-bottom: 10px;">✅ <strong>What is the best number and time to reach you?</strong> (Need 10-15 min to present findings)</p>
+                
+                <p style="margin-bottom: 15px;"><span style="background: #ef4444; color: white; padding: 3px 10px; border-radius: 15px; font-weight: 600;">OBJECTION HANDLING</span></p>
+                
+                <p style="margin-bottom: 15px;"><em>"Can you email the audit results?"</em></p>
+                <p style="margin-bottom: 20px; background: #fff4e5; padding: 12px; border-radius: 10px;"><strong>Response:</strong> "Due to the sensitive nature of compliance audits and to protect our assessment methodology, we don't email results. This free audit requires a brief 10-15 minute phone consultation to walk you through the findings. Would you prefer a phone call or Zoom?"</p>
+            </div>
+
+            <!-- SCRIPT 2 LINKS with Copy Buttons -->
+            <div class="links-section">
+                <div class="links-title">
+                    <span>🔗</span> State Compliance Resources
+                </div>
+                
+                <div class="link-item">
+                    <a href="https://www.google.com/search?q=state+of+florida+website+compliance+penalty&rlz=1CAIPNW_enUS1176&oq=state+of+virginia+website+compliance+penalty&gs_lcrp=EgZjaHJvbWUqCAgAEEUYJxg7MggIABBFGCcYOzITCAEQLhjHARixAxjRAxiABBiKBTIICAIQRRgnGDsyBggDEEUYOzIGCAQQRRg5MgYIBRBFGD0yBggGEEUYQTIGCAcQRRg80gEIMjI1NmowajSoAgGwAgHxBbVCuOBgMu2R8QW1QrjgYDLtkQ&sourceid=chrome&ie=UTF-8" target="_blank" class="link-url">
+                        🏛️ Florida State Compliance Penalties
+                    </a>
+                    <button class="copy-btn" onclick="copyLink(this, 'https://www.google.com/search?q=state+of+florida+website+compliance+penalty&rlz=1CAIPNW_enUS1176&oq=state+of+virginia+website+compliance+penalty&gs_lcrp=EgZjaHJvbWUqCAgAEEUYJxg7MggIABBFGCcYOzITCAEQLhjHARixAxjRAxiABBiKBTIICAIQRRgnGDsyBggDEEUYOzIGCAQQRRg5MgYIBRBFGD0yBggGEEUYQTIGCAcQRRg80gEIMjI1NmowajSoAgGwAgHxBbVCuOBgMu2R8QW1QrjgYDLtkQ&sourceid=chrome&ie=UTF-8')">
+                        📋 Copy Link
+                    </button>
+                </div>
+                
+                <div class="link-item">
+                    <a href="https://www.google.com/search?q=state+of+new+york+website+compliance+penalty&rlz=1CAIPNW_enUS1176&oq=state+of+new&gs_lcrp=EgZjaHJvbWUqCAgAEEUYJxg7MggIABBFGCcYOzIGCAEQRRg5MgYIAhAjGCcyEAgDEC4YkQIYsQMYgAQYigUyDQgEEC4YkQIYgAQYigUyDQgFEAAYkQIYgAQYigUyDQgGEAAYkQIYgAQYigUyBwgHEC4YgAQyBwgIEAAYgAQyDQgJEAAYkQIYgAQYigXSAQg3MTAyajBqOagCALACAA&sourceid=chrome&ie=UTF-8" target="_blank" class="link-url">
+                        🗽 New York State Compliance Penalties
+                    </a>
+                    <button class="copy-btn" onclick="copyLink(this, 'https://www.google.com/search?q=state+of+new+york+website+compliance+penalty&rlz=1CAIPNW_enUS1176&oq=state+of+new&gs_lcrp=EgZjaHJvbWUqCAgAEEUYJxg7MggIABBFGCcYOzIGCAEQRRg5MgYIAhAjGCcyEAgDEC4YkQIYsQMYgAQYigUyDQgEEC4YkQIYgAQYigUyDQgFEAAYkQIYgAQYigUyDQgGEAAYkQIYgAQYigUyBwgHEC4YgAQyBwgIEAAYgAQyDQgJEAAYkQIYgAQYigXSAQg3MTAyajBqOagCALACAA&sourceid=chrome&ie=UTF-8')">
+                        📋 Copy Link
+                    </button>
+                </div>
+                
+                <div class="link-item">
+                    <a href="https://www.google.com/search?q=all+states+website+compliance+penalty&rlz=1CAIPNW_enUS1176&oq=all+states&gs_lcrp=EgZjaHJvbWUqCAgAEEUYJxg7MggIABBFGCcYOzIPCAEQRRg5GIMBGLEDGIAEMg0IAhAuGK8BGMcBGIAEMgcIAxAAGIAEMgcIBBAAGIAEMgcIBRAAGIAEMgcIBhAAGIAEMgcIBxAAGIAEMgcICBAAGIAEMgcICRAAGI8C0gEIMzQ4NGowajmoAgCwAgA&sourceid=chrome&ie=UTF-8" target="_blank" class="link-url">
+                        🇺🇸 All States Compliance Penalties
+                    </a>
+                    <button class="copy-btn" onclick="copyLink(this, 'https://www.google.com/search?q=all+states+website+compliance+penalty&rlz=1CAIPNW_enUS1176&oq=all+states&gs_lcrp=EgZjaHJvbWUqCAgAEEUYJxg7MggIABBFGCcYOzIPCAEQRRg5GIMBGLEDGIAEMg0IAhAuGK8BGMcBGIAEMgcIAxAAGIAEMgcIBBAAGIAEMgcIBRAAGIAEMgcIBhAAGIAEMgcIBxAAGIAEMgcICBAAGIAEMgcICRAAGI8C0gEIMzQ4NGowajmoAgCwAgA&sourceid=chrome&ie=UTF-8')">
+                        📋 Copy Link
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ============================================ -->
+        <!-- SCRIPT 3: WEBSWAN ADVERTISING PLATFORM       -->
+        <!-- ============================================ -->
+        <div class="script-card card-3">
+            <div class="script-header">
+                <div class="script-icon" style="background: rgba(59,130,246,0.1); color: #3b82f6;">📢</div>
+                <div>
+                    <div class="script-title">WebSwan Advertising Platform</div>
+                    <div class="script-subtitle">Get Found Where Clients Search</div>
+                </div>
+            </div>
+
+            <div class="script-content">
+                <p style="font-size: 18px; font-weight: 600; color: #1d334a; margin-bottom: 15px;">📢 Judith's Advertising Script:</p>
+                
+                <p style="margin-bottom: 15px;"><span style="background: #3b82f6; color: white; padding: 3px 10px; border-radius: 15px; font-weight: 600;">OPENING</span></p>
+                
+                <p style="margin-bottom: 20px;"><strong>"Hi this is Judith with WebSwan.</strong> Besides designing professional UX/UI websites, we also have our own advertising platform designed to help small businesses like yours get noticed online.</p>
+                
+                <p style="margin-bottom: 20px;">We help you showcase your business exactly where your potential clients are already searching for your services. It's cost-effective and targeted to your local area."</p>
+                
+                <p style="margin-bottom: 15px;"><span style="background: #1d334a; color: white; padding: 3px 10px; border-radius: 15px; font-weight: 600;">QUALIFYING QUESTIONS</span></p>
+                
+                <p style="margin-bottom: 10px;">✅ <strong>Would you be interested in learning how WebSwan advertising can bring you more local customers?</strong></p>
+                <p style="margin-bottom: 10px;">✅ <strong>Are you currently advertising anywhere?</strong> (Google, Facebook, print, etc.)</p>
+                <p style="margin-bottom: 10px;">✅ <strong>What's your monthly advertising budget currently?</strong></p>
+                <p style="margin-bottom: 20px;">✅ <strong>Best time for a quick 10-minute call to explain our platform?</strong></p>
+                
+                <p style="margin-bottom: 15px;"><span style="background: #10b981; color: white; padding: 3px 10px; border-radius: 15px; font-weight: 600;">VALUE PROPOSITION</span></p>
+                
+                <p style="background: #e6f3ff; padding: 15px; border-radius: 10px;">
+                    <strong>💡 "Unlike Google Ads where you're competing with hundreds, WebSwan puts your business in front of motivated buyers actively looking for your services. No long-term contracts, and you only pay for results."</strong>
+                </p>
+            </div>
+
+            <!-- SCRIPT 3 LINKS with Copy Buttons -->
+            <div class="links-section">
+                <div class="links-title">
+                    <span>🔗</span> Advertising Resources
+                </div>
+                
+                <div class="link-item">
+                    <a href="https://manage.multisiteadmin.com/lead_generator" target="_blank" class="link-url">
+                        🎯 WebSwan Prospect & Lead Tool
+                    </a>
+                    <button class="copy-btn" onclick="copyLink(this, 'https://manage.multisiteadmin.com/lead_generator')">
+                        📋 Copy Link
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- WebSwan Footer -->
+        <div style="text-align: center; margin-top: 20px; padding: 20px; color: #666; border-top: 2px solid #f2970f;">
+            <p style="font-size: 14px;">🦢 WebSwan • Judith • Custom Web Design • Compliance Audits • Advertising</p>
+            <p style="font-size: 12px; margin-top: 10px;">© 2026 WebSwan - All scripts confidential and property of WebSwan</p>
+        </div>
+    </div>
+</div>
+
+<script>
+    // ============================================
+    // SCRIPT 1: TOGGLE SCRIPTS CONTAINER
+    // UX/UI - Smooth reveal with animation
+    // ============================================
+    function toggleScripts() {
+        const container = document.getElementById('scriptsContainer');
+        const button = document.querySelector('.script-toggle-btn');
+        
+        container.classList.toggle('active');
+        
+        if (container.classList.contains('active')) {
+            // Smooth scroll to scripts
+            setTimeout(() => {
+                container.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 100);
+            
+            // Button feedback
+            button.innerHTML = '<span style="font-size: 28px;">📂</span> WebSwan Script Suite (Open) <span style="font-size: 28px;">📞</span>';
+            button.style.background = 'linear-gradient(45deg, #f2970f, #e08a0a)';
+            button.style.color = '#1d334a';
+        } else {
+            button.innerHTML = '<span style="font-size: 28px;">📋</span> WebSwan Script Suite <span style="font-size: 28px;">📞</span>';
+            button.style.background = 'linear-gradient(45deg, #1d334a, #2a4a6a)';
+            button.style.color = 'white';
+        }
+    }
+
+    // ============================================
+    // SCRIPT 2: COPY LINK FUNCTIONALITY
+    // With visual feedback - "Copied!" animation
+    // ============================================
+    function copyLink(button, link) {
+        // Copy to clipboard
+        navigator.clipboard.writeText(link).then(function() {
+            // Store original text
+            const originalText = button.innerHTML;
+            
+            // Change button to "Copied!"
+            button.innerHTML = '✅ Copied!';
+            button.classList.add('copied');
+            
+            // Reset after 2 seconds
+            setTimeout(function() {
+                button.innerHTML = '📋 Copy Link';
+                button.classList.remove('copied');
+            }, 2000);
+            
+        }).catch(function(err) {
+            // Fallback for older browsers
+            const textArea = document.createElement('textarea');
+            textArea.value = link;
+            document.body.appendChild(textArea);
+            textArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textArea);
+            
+            button.innerHTML = '✅ Copied!';
+            button.classList.add('copied');
+            
+            setTimeout(function() {
+                button.innerHTML = '📋 Copy Link';
+                button.classList.remove('copied');
+            }, 2000);
+        });
+    }
+
+    // ============================================
+    // SCRIPT 3: INITIALIZATION & UTILITIES
+    // Auto-open first script? No - user clicks button
+    // ============================================
+    document.addEventListener('DOMContentLoaded', function() {
+        // Any initialization if needed
+        console.log('🦢 WebSwan Script Suite Ready - Judith is ready to call!');
+        
+        // Add double-click protection for copy buttons
+        const copyButtons = document.querySelectorAll('.copy-btn');
+        copyButtons.forEach(btn => {
+            btn.addEventListener('dblclick', function(e) {
+                e.preventDefault();
+            });
+        });
+    });
+
+    // ============================================
+    // EXTRA: Keyboard shortcut to toggle scripts (Alt+S)
+    // ============================================
+    document.addEventListener('keydown', function(e) {
+        if (e.altKey && e.key === 's') {
+            e.preventDefault();
+            toggleScripts();
+        }
+    });
+</script>
+
+<!-- 
+    NO TEST BUTTONS! 
+    Just pure, professional cold call scripts for Judith.
+    All links have copy buttons, all scripts are ready to use.
+    WebSwan - Professional. Trustworthy. Effective.
+-->
+
+</body>
+</html>
