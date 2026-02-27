@@ -3,14 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WebSwan - Cold Call Scripts</title>
+    <title>WebSwan - Prospect Form & Estimate</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
 
         body {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -21,905 +16,732 @@
             align-items: center;
         }
 
-        .swan-container {
+        .main-container {
             max-width: 1000px;
             width: 100%;
-            background: rgba(255,255,255,0.95);
-            backdrop-filter: blur(10px);
-            border-radius: 30px;
-            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);
-            padding: 40px;
-            border: 1px solid rgba(255,255,255,0.3);
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
         }
 
-        .webswan-header {
+        /* =================== HEADER =================== */
+        .ws-header {
+            background: rgba(255,255,255,0.97);
+            border-radius: 24px;
+            padding: 30px 40px;
             display: flex;
             align-items: center;
-            gap: 15px;
-            margin-bottom: 35px;
-            padding-bottom: 25px;
-            border-bottom: 3px solid #f2970f;
+            gap: 18px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+            border: 1px solid rgba(255,255,255,0.4);
         }
-
-        .swan-logo {
-            width: 60px;
-            height: 60px;
+        .ws-logo {
+            width: 62px; height: 62px;
             background: linear-gradient(45deg, #1d334a, #f2970f);
             border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 30px;
-            color: white;
-            box-shadow: 0 10px 20px rgba(242,151,15,0.3);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 30px; color: white;
+            box-shadow: 0 8px 20px rgba(242,151,15,0.35);
+            flex-shrink: 0;
         }
+        .ws-header-text h1 { color: #1d334a; font-size: 28px; font-weight: 800; }
+        .ws-header-text p { color: #f2970f; font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; margin-top: 3px; }
 
-        .swan-title h1 {
+        /* =================== CARDS =================== */
+        .card {
+            background: rgba(255,255,255,0.97);
+            border-radius: 24px;
+            padding: 35px 40px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+            border: 1px solid rgba(255,255,255,0.4);
+        }
+        .card-title {
+            font-size: 22px; font-weight: 800; color: #1d334a;
+            margin-bottom: 6px; display: flex; align-items: center; gap: 10px;
+        }
+        .card-subtitle { color: #718096; font-size: 14px; margin-bottom: 28px; }
+        .section-divider { height: 3px; background: linear-gradient(90deg, #f2970f, #1d334a); border-radius: 10px; margin-bottom: 28px; }
+
+        /* =================== FORM FIELDS =================== */
+        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+        .form-full { grid-column: 1 / -1; }
+        .field-group { display: flex; flex-direction: column; gap: 6px; }
+        .field-group label { font-size: 13px; font-weight: 700; color: #4a5568; text-transform: uppercase; letter-spacing: 0.5px; }
+        .field-group input, .field-group select {
+            padding: 13px 16px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            font-size: 15px;
             color: #1d334a;
-            font-size: 32px;
-            font-weight: 700;
-            letter-spacing: -0.5px;
-        }
-
-        .swan-title p {
-            color: #f2970f;
-            font-weight: 600;
-            font-size: 14px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        .script-toggle-btn {
-            width: 100%;
-            padding: 25px;
-            background: linear-gradient(45deg, #1d334a, #2a4a6a);
-            border: none;
-            border-radius: 20px;
-            color: white;
-            font-size: 24px;
-            font-weight: bold;
-            cursor: pointer;
-            box-shadow: 0 15px 30px rgba(29,51,74,0.4);
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 15px;
-            margin-bottom: 30px;
-            border: 2px solid #f2970f;
-            letter-spacing: 1px;
-        }
-
-        .script-toggle-btn:hover {
-            background: linear-gradient(45deg, #f2970f, #e08a0a);
-            color: #1d334a;
-            transform: translateY(-3px);
-            box-shadow: 0 20px 40px rgba(242,151,15,0.4);
-            border-color: white;
-        }
-
-        .script-toggle-btn i { font-size: 28px; }
-
-        .scripts-container {
-            display: none;
-            animation: fadeIn 0.5s ease;
-        }
-
-        .scripts-container.active { display: block; }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .script-card {
-            background: white;
-            border-radius: 20px;
-            padding: 30px;
-            margin-bottom: 30px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-            border-left: 8px solid;
-            transition: all 0.3s;
-        }
-
-        .script-card:hover {
-            transform: translateX(5px);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.12);
-        }
-
-        .script-header {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            margin-bottom: 25px;
-        }
-
-        .script-icon {
-            width: 50px;
-            height: 50px;
-            border-radius: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 24px;
-        }
-
-        .script-title {
-            font-size: 24px;
-            font-weight: 700;
-            color: #1d334a;
-        }
-
-        .script-subtitle {
-            color: #666;
-            font-size: 14px;
-            margin-top: 5px;
-        }
-
-        .script-content {
             background: #f8faff;
-            padding: 25px;
-            border-radius: 15px;
-            margin: 20px 0;
-            line-height: 1.8;
-            color: #2d3748;
-            font-size: 16px;
-            border: 1px solid #e2e8f0;
-            position: relative;
-        }
-
-        .script-content strong { color: #f2970f; }
-
-        .script-content em {
-            color: #1d334a;
-            font-style: italic;
-            background: rgba(242,151,15,0.1);
-            padding: 2px 8px;
-            border-radius: 5px;
-        }
-
-        .links-section {
-            margin-top: 25px;
-            border-top: 2px dashed #e2e8f0;
-            padding-top: 25px;
-        }
-
-        .links-title {
-            font-size: 18px;
-            font-weight: 600;
-            color: #1d334a;
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .link-item {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            background: white;
-            padding: 12px 20px;
-            border-radius: 12px;
-            margin-bottom: 12px;
-            border: 1px solid #e2e8f0;
-            transition: all 0.2s;
-        }
-
-        .link-item:hover {
-            background: #f7fafc;
-            border-color: #f2970f;
-        }
-
-        .link-url {
-            color: #1d334a;
-            text-decoration: none;
-            font-size: 14px;
-            word-break: break-all;
-            flex: 1;
-            padding-right: 15px;
-        }
-
-        .link-url:hover { color: #f2970f; }
-
-        .copy-btn {
-            background: #1d334a;
-            color: white;
-            border: none;
-            padding: 8px 18px;
-            border-radius: 8px;
-            font-size: 14px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.2s;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-
-        .copy-btn:hover { background: #f2970f; transform: scale(1.05); }
-        .copy-btn.copied { background: #10b981; }
-
-        .card-1 { border-left-color: #f2970f; }
-        .card-2 { border-left-color: #ef4444; }
-        .card-3 { border-left-color: #3b82f6; }
-
-        /* ============================================
-           STATE COMPLIANCE SEARCH WIDGET
-        ============================================ */
-        .state-compliance-widget {
-            background: linear-gradient(135deg, #e8f4fd 0%, #d1ecf1 100%);
-            border: 2px solid #bee3f8;
-            border-radius: 16px;
-            padding: 25px;
-            margin-top: 25px;
-        }
-
-        .state-compliance-widget-title {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 17px;
-            font-weight: 700;
-            color: #1d334a;
-            margin-bottom: 18px;
-            padding-bottom: 12px;
-            border-bottom: 2px solid #bee3f8;
-        }
-
-        .state-compliance-widget-title input[type="checkbox"] {
-            width: 18px;
-            height: 18px;
-            cursor: pointer;
-            accent-color: #2b6cb0;
-        }
-
-        .state-search-row {
-            display: flex;
-            gap: 12px;
-            margin-bottom: 16px;
-            align-items: center;
-        }
-
-        .state-search-input {
-            flex: 1;
-            padding: 12px 18px;
-            border: 2px solid #bee3f8;
-            border-radius: 12px;
-            font-size: 15px;
-            color: #1d334a;
-            background: white;
             outline: none;
-            transition: border-color 0.2s;
-        }
-
-        .state-search-input:focus {
-            border-color: #3182ce;
-            box-shadow: 0 0 0 3px rgba(49,130,206,0.15);
-        }
-
-        .state-search-btn {
-            background: linear-gradient(45deg, #2b6cb0, #3182ce);
-            color: white;
-            border: none;
-            padding: 12px 22px;
-            border-radius: 12px;
-            font-size: 15px;
-            font-weight: 700;
-            cursor: pointer;
             transition: all 0.2s;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            white-space: nowrap;
+            width: 100%;
         }
-
-        .state-search-btn:hover {
-            background: linear-gradient(45deg, #2c5282, #2b6cb0);
-            transform: translateY(-2px);
-            box-shadow: 0 6px 16px rgba(43,108,176,0.35);
-        }
-
-        .quick-state-pills {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-bottom: 16px;
-        }
-
-        .state-pill {
+        .field-group input:focus, .field-group select:focus {
+            border-color: #f2970f;
             background: white;
-            border: 2px solid #bee3f8;
-            color: #2b6cb0;
-            padding: 6px 16px;
-            border-radius: 30px;
-            font-size: 13px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.2s;
+            box-shadow: 0 0 0 3px rgba(242,151,15,0.12);
         }
 
-        .state-pill:hover, .state-pill.active {
-            background: #2b6cb0;
-            color: white;
-            border-color: #2b6cb0;
-            transform: translateY(-1px);
-            box-shadow: 0 4px 10px rgba(43,108,176,0.3);
+        /* =================== BUTTONS =================== */
+        .btn {
+            padding: 14px 24px; border: none; border-radius: 12px;
+            font-size: 15px; font-weight: 700; cursor: pointer;
+            transition: all 0.2s; display: inline-flex; align-items: center; gap: 8px;
         }
+        .btn:hover { transform: translateY(-2px); }
+        .btn-primary { background: linear-gradient(45deg, #1d334a, #2a4a6a); color: white; box-shadow: 0 6px 18px rgba(29,51,74,0.3); }
+        .btn-primary:hover { box-shadow: 0 10px 25px rgba(29,51,74,0.4); }
+        .btn-sms { background: linear-gradient(45deg, #25d366, #128c7e); color: white; box-shadow: 0 6px 18px rgba(37,211,102,0.3); }
+        .btn-sms:hover { box-shadow: 0 10px 25px rgba(37,211,102,0.4); }
+        .btn-copy { background: linear-gradient(45deg, #4f46e5, #7c3aed); color: white; box-shadow: 0 6px 18px rgba(79,70,229,0.3); }
+        .btn-copy:hover { box-shadow: 0 10px 25px rgba(79,70,229,0.4); }
+        .btn-copy.copied { background: linear-gradient(45deg, #10b981, #059669); }
+        .btn-orange { background: linear-gradient(45deg, #f2970f, #e08a0a); color: white; box-shadow: 0 6px 18px rgba(242,151,15,0.3); }
+        .btn-orange:hover { box-shadow: 0 10px 25px rgba(242,151,15,0.4); }
+        .btn-green { background: linear-gradient(45deg, #10b981, #059669); color: white; box-shadow: 0 6px 18px rgba(16,185,129,0.3); }
+        .btn-row { display: flex; gap: 12px; margin-top: 24px; flex-wrap: wrap; }
 
-        .state-result-box {
-            display: none;
-            background: white;
+        /* =================== FORM INFO BOX =================== */
+        .form-info-box {
+            background: linear-gradient(135deg, #e8f4fd, #d1ecf1);
             border: 2px solid #bee3f8;
             border-radius: 14px;
-            padding: 18px 20px;
-            margin-top: 12px;
-            animation: slideDown 0.3s ease;
-        }
-
-        .state-result-box.visible { display: block; }
-
-        @keyframes slideDown {
-            from { opacity: 0; transform: translateY(-10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .state-result-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 12px;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-
-        .state-result-name {
-            font-size: 16px;
-            font-weight: 700;
-            color: #1d334a;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .state-result-actions {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-        }
-
-        .state-view-btn {
-            background: linear-gradient(45deg, #2b6cb0, #3182ce);
-            color: white;
-            border: none;
-            padding: 8px 18px;
-            border-radius: 8px;
-            font-size: 13px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.2s;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .state-view-btn:hover {
-            background: linear-gradient(45deg, #2c5282, #2b6cb0);
-            transform: scale(1.04);
-        }
-
-        .state-copy-btn {
-            background: #1d334a;
-            color: white;
-            border: none;
-            padding: 8px 18px;
-            border-radius: 8px;
-            font-size: 13px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.2s;
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .state-copy-btn:hover { background: #f2970f; transform: scale(1.04); }
-        .state-copy-btn.copied { background: #10b981; }
-
-        .state-result-url {
-            font-size: 12px;
-            color: #718096;
-            word-break: break-all;
-            margin-top: 8px;
-            padding: 8px 12px;
-            background: #f7fafc;
-            border-radius: 8px;
-            border: 1px solid #e2e8f0;
-        }
-
-        .state-not-found {
-            display: none;
-            background: #fff5f5;
-            border: 1px solid #fed7d7;
-            border-radius: 10px;
-            padding: 14px 18px;
-            color: #c53030;
+            padding: 16px 20px;
+            margin-bottom: 22px;
             font-size: 14px;
+            color: #2b6cb0;
             font-weight: 600;
-            margin-top: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
-        .state-not-found.visible { display: block; }
+        /* =================== ESTIMATE BUILDER =================== */
+        .estimate-section { margin-top: 10px; }
+        .pricing-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 24px; }
+        
+        .price-item {
+            background: #f8faff;
+            border: 2px solid #e2e8f0;
+            border-radius: 14px;
+            padding: 16px 18px;
+            cursor: pointer;
+            transition: all 0.22s;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            user-select: none;
+        }
+        .price-item:hover { border-color: #f2970f; background: #fff8ef; transform: translateY(-2px); }
+        .price-item.selected { border-color: #f2970f; background: #fff4e0; box-shadow: 0 4px 14px rgba(242,151,15,0.2); }
+        .price-item.mandatory { border-color: #ef4444; background: #fff5f5; }
+        .price-item.mandatory.selected { border-color: #ef4444; background: #fee2e2; box-shadow: 0 4px 14px rgba(239,68,68,0.2); }
 
-        @media (max-width: 768px) {
-            .swan-container { padding: 25px; }
-            .script-toggle-btn { font-size: 18px; padding: 20px; }
-            .script-title { font-size: 20px; }
-            .link-item { flex-direction: column; align-items: flex-start; gap: 10px; }
-            .copy-btn { width: 100%; justify-content: center; }
-            .state-search-row { flex-direction: column; }
-            .state-search-btn { width: 100%; justify-content: center; }
-            .state-result-actions { width: 100%; }
-            .state-view-btn, .state-copy-btn { flex: 1; justify-content: center; }
+        .price-checkbox {
+            width: 22px; height: 22px; border-radius: 6px;
+            border: 2px solid #cbd5e0; background: white;
+            display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0; margin-top: 2px; transition: all 0.2s;
+            font-size: 13px;
+        }
+        .price-item.selected .price-checkbox { background: #f2970f; border-color: #f2970f; color: white; }
+        .price-item.mandatory .price-checkbox { background: #ef4444; border-color: #ef4444; color: white; }
+
+        .price-info { flex: 1; }
+        .price-name { font-size: 14px; font-weight: 700; color: #1d334a; margin-bottom: 3px; }
+        .price-amount { font-size: 18px; font-weight: 800; color: #f2970f; }
+        .price-item.mandatory .price-amount { color: #ef4444; }
+        .price-monthly { font-size: 11px; color: #718096; margin-top: 3px; font-style: italic; }
+        .price-desc { font-size: 11px; color: #a0aec0; margin-top: 2px; }
+        .mandatory-badge {
+            display: inline-block; background: #fee2e2; color: #ef4444;
+            font-size: 10px; font-weight: 700; padding: 2px 8px;
+            border-radius: 10px; margin-left: 6px; text-transform: uppercase;
+        }
+
+        /* =================== TOTAL BOX =================== */
+        .total-box {
+            background: linear-gradient(135deg, #1d334a, #2a4a6a);
+            border-radius: 18px;
+            padding: 24px 28px;
+            color: white;
+            margin-top: 20px;
+        }
+        .total-box-title { font-size: 14px; font-weight: 600; opacity: 0.8; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 1px; }
+        .total-amount { font-size: 42px; font-weight: 900; color: #f2970f; line-height: 1; }
+        .total-note { font-size: 12px; opacity: 0.7; margin-top: 8px; }
+        .total-breakdown { margin-top: 14px; border-top: 1px solid rgba(255,255,255,0.15); padding-top: 14px; }
+        .breakdown-item { display: flex; justify-content: space-between; font-size: 13px; margin-bottom: 6px; opacity: 0.9; }
+        .breakdown-item.monthly-note { opacity: 0.6; font-style: italic; font-size: 12px; }
+        .monthly-summary { margin-top: 10px; padding-top: 10px; border-top: 1px dashed rgba(255,255,255,0.2); font-size: 13px; color: #fbbf24; }
+
+        /* =================== MODAL =================== */
+        .modal-overlay {
+            display: none; position: fixed; top: 0; left: 0;
+            width: 100%; height: 100%; background: rgba(0,0,0,0.6);
+            z-index: 9999; align-items: center; justify-content: center;
+            backdrop-filter: blur(4px);
+        }
+        .modal-overlay.open { display: flex; }
+        .modal-box {
+            background: white; border-radius: 24px; padding: 36px 40px;
+            max-width: 440px; width: 90%; box-shadow: 0 30px 60px rgba(0,0,0,0.3);
+            animation: popIn 0.3s ease;
+        }
+        @keyframes popIn { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
+        .modal-title { font-size: 22px; font-weight: 800; color: #1d334a; margin-bottom: 6px; }
+        .modal-subtitle { font-size: 14px; color: #718096; margin-bottom: 24px; }
+        .modal-input {
+            width: 100%; padding: 14px 18px;
+            border: 2px solid #e2e8f0; border-radius: 12px;
+            font-size: 16px; color: #1d334a; outline: none;
+            transition: border-color 0.2s; margin-bottom: 18px;
+        }
+        .modal-input:focus { border-color: #f2970f; box-shadow: 0 0 0 3px rgba(242,151,15,0.12); }
+        .modal-buttons { display: flex; gap: 12px; }
+        .modal-cancel { background: #f7fafc; color: #718096; border: 2px solid #e2e8f0; padding: 12px 20px; border-radius: 10px; font-weight: 700; cursor: pointer; font-size: 14px; flex: 1; }
+        .modal-cancel:hover { background: #edf2f7; }
+
+        /* =================== SUCCESS TOAST =================== */
+        .toast {
+            position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%) translateY(100px);
+            background: #1d334a; color: white; padding: 14px 28px;
+            border-radius: 50px; font-weight: 700; font-size: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3); z-index: 99999;
+            transition: transform 0.4s ease; display: flex; align-items: center; gap: 10px;
+        }
+        .toast.show { transform: translateX(-50%) translateY(0); }
+
+        /* =================== FOOTER =================== */
+        .ws-footer {
+            background: rgba(255,255,255,0.15);
+            border-radius: 16px;
+            padding: 20px;
+            text-align: center;
+            color: white;
+            font-size: 13px;
+        }
+
+        /* =================== RESPONSIVE =================== */
+        @media (max-width: 640px) {
+            .card { padding: 24px 20px; }
+            .ws-header { padding: 20px; }
+            .form-grid { grid-template-columns: 1fr; }
+            .pricing-grid { grid-template-columns: 1fr; }
+            .btn-row { flex-direction: column; }
+            .btn-row .btn { width: 100%; justify-content: center; }
+            .modal-buttons { flex-direction: column; }
         }
     </style>
 </head>
 <body>
 
-<div class="swan-container">
-    <!-- WebSwan Header -->
-    <div class="webswan-header">
-        <div class="swan-logo">🦢</div>
-        <div class="swan-title">
+<div class="main-container">
+
+    <!-- HEADER -->
+    <div class="ws-header">
+        <div class="ws-logo">🦢</div>
+        <div class="ws-header-text">
             <h1>WebSwan</h1>
-            <p>Judith's Cold Call Scripts • 2026</p>
+            <p>Prospect Form & Estimate Builder • 2026</p>
         </div>
     </div>
 
-    <!-- MAIN SCRIPT BUTTON -->
-    <button class="script-toggle-btn" onclick="toggleScripts()">
-        <span style="font-size: 28px;">📋</span> 
-        WebSwan Script Suite
-        <span style="font-size: 28px;">📞</span>
-    </button>
+    <!-- ================================================
+         SECTION 1: PROSPECT INTAKE FORM
+    ================================================ -->
+    <div class="card">
+        <div class="card-title">📋 Prospect Intake Form</div>
+        <div class="card-subtitle">Fill this out for your prospect — or copy the link to send it to them to fill out themselves</div>
+        <div class="section-divider"></div>
 
-    <!-- SCRIPTS CONTAINER -->
-    <div id="scriptsContainer" class="scripts-container">
-        
-        <!-- SCRIPT 1: CUSTOM UX/UI WEB DESIGN -->
-        <div class="script-card card-1">
-            <div class="script-header">
-                <div class="script-icon" style="background: rgba(242,151,15,0.1); color: #f2970f;">🎨</div>
-                <div>
-                    <div class="script-title">Custom UX/UI Web Design</div>
-                    <div class="script-subtitle">Free Demo • 5 Businesses Only • No Obligation</div>
-                </div>
+        <div class="form-info-box">
+            📤 <span>Share this form with your prospect by clicking <strong>Copy Form Link</strong> below — they fill it out and hit <strong>Submit via SMS</strong> to send it straight to you!</span>
+        </div>
+
+        <div class="form-grid">
+            <div class="field-group">
+                <label>👤 Full Name *</label>
+                <input type="text" id="pName" placeholder="Prospect's full name">
             </div>
-
-            <div class="script-content">
-                <p style="font-size: 18px; font-weight: 600; color: #1d334a; margin-bottom: 15px;">🎯 Judith's Cold Call Script:</p>
-                
-                <p style="margin-bottom: 15px;"><span style="background: #f2970f; color: white; padding: 3px 10px; border-radius: 15px; font-weight: 600;">OPENING</span></p>
-                
-                <p style="margin-bottom: 20px;"><strong>"Hi this is Judith with WebSwan.</strong> I'm a custom web designer and I create professional UX/UI web design for businesses like yours.</p>
-                
-                <p style="margin-bottom: 20px;">Today I'm doing a <strong style="color: #f2970f; font-size: 18px;">FREE DEMO for 5 businesses</strong> at no cost, no obligation. This would give you an idea of how we can help you show up on search engines professionally and build trust with your customers."</p>
-                
-                <p style="margin-bottom: 15px;"><span style="background: #1d334a; color: white; padding: 3px 10px; border-radius: 15px; font-weight: 600;">QUALIFYING QUESTIONS</span></p>
-                
-                <p style="margin-bottom: 10px;">✅ <strong>Would you be interested in seeing your business free demo?</strong></p>
-                <p style="margin-bottom: 10px;">✅ <strong>What is the name of your business?</strong></p>
-                <p style="margin-bottom: 10px;">✅ <strong>Do you have an existing website?</strong> (If yes, get URL)</p>
-                <p style="margin-bottom: 20px;">✅ <strong>What is the best time to reach out and best number?</strong> (Need 10-15 min to present)</p>
-                
-                <p style="margin-bottom: 15px;"><span style="background: #ef4444; color: white; padding: 3px 10px; border-radius: 15px; font-weight: 600;">OBJECTION HANDLING</span></p>
-                
-                <p style="margin-bottom: 15px;"><em>"Can you just email me the demo?"</em></p>
-                <p style="margin-bottom: 20px; background: #fff4e5; padding: 12px; border-radius: 10px;"><strong>Response:</strong> "I apologize, but to protect our intellectual property and the quality of our work, we don't email demos. Since this is a complimentary service valued at $395, we present it personally via phone or Zoom to ensure you see everything properly. Would a quick 10-minute Zoom call work better for you?"</p>
-                
-                <p style="margin-bottom: 10px;"><span style="background: #10b981; color: white; padding: 3px 10px; border-radius: 15px; font-weight: 600;">TIMELINE</span></p>
-                <p style="margin-bottom: 5px;"><strong>⏱️ Demo build time:</strong> 2-3 business days</p>
-                <p><strong>📅 Presentation:</strong> 10-15 minute phone/Zoom call</p>
+            <div class="field-group">
+                <label>📱 Phone Number *</label>
+                <input type="tel" id="pPhone" placeholder="(555) 555-5555">
             </div>
-
-            <div class="links-section">
-                <div class="links-title"><span>🔗</span> Custom Web Design Resources</div>
-                
-                <div class="link-item">
-                    <a href="https://www.google.com/search?q=price+range+for+custom+web+design+ux+ui+from+web+developer&rlz=1CAIPNW_enUS1176&oq=price+range+for+custom+web+design+ux+ui+from+web+developer&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIHCAEQIRigATIHCAIQIRigATIHCAMQIRigATIHCAQQIRirAtIBCTEyNzQ5ajBqOagCALACAA&sourceid=chrome&ie=UTF-8" target="_blank" class="link-url">
-                        📊 Custom Web Design Pricing Research
-                    </a>
-                    <button class="copy-btn" onclick="copyLink(this, 'https://www.google.com/search?q=price+range+for+custom+web+design+ux+ui+from+web+developer&rlz=1CAIPNW_enUS1176&oq=price+range+for+custom+web+design+ux+ui+from+web+developer&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIHCAEQIRigATIHCAIQIRigATIHCAMQIRigATIHCAQQIRirAtIBCTEyNzQ5ajBqOagCALACAA&sourceid=chrome&ie=UTF-8')">
-                        📋 Copy Link
-                    </button>
-                </div>
-                
-                <div class="link-item">
-                    <a href="https://manage.multisiteadmin.com/lead_generator" target="_blank" class="link-url">
-                        🎯 WebSwan Prospect Tool
-                    </a>
-                    <button class="copy-btn" onclick="copyLink(this, 'https://manage.multisiteadmin.com/lead_generator')">
-                        📋 Copy Link
-                    </button>
-                </div>
+            <div class="field-group">
+                <label>🏢 Business Name *</label>
+                <input type="text" id="pBusiness" placeholder="Business name">
+            </div>
+            <div class="field-group">
+                <label>🌐 Business URL</label>
+                <input type="url" id="pUrl" placeholder="https://www.yourbusiness.com">
+            </div>
+            <div class="field-group form-full">
+                <label>🛠️ Service Interested In</label>
+                <select id="pService">
+                    <option value="">-- Select a Service --</option>
+                    <option value="Web Design">🎨 Web Design</option>
+                    <option value="Landing Page">📄 Landing Page</option>
+                    <option value="Estimate">💰 Estimate</option>
+                    <option value="Advertising">📢 Advertising</option>
+                </select>
             </div>
         </div>
 
-        <!-- SCRIPT 2: WEBSITE COMPLIANCE & SSL -->
-        <div class="script-card card-2">
-            <div class="script-header">
-                <div class="script-icon" style="background: rgba(239,68,68,0.1); color: #ef4444;">⚖️</div>
-                <div>
-                    <div class="script-title">Website Compliance & SSL Audit</div>
-                    <div class="script-subtitle">Free $395 Audit • State Attorney Compliance</div>
-                </div>
-            </div>
+        <div class="btn-row">
+            <!-- SMS SUBMIT — sends form info to Judith at 9172240828 -->
+            <button class="btn btn-sms" onclick="submitFormViaSMS()">
+                💬 Submit via SMS
+            </button>
+            <!-- COPY LINK — copies a shareable link to this form -->
+            <button class="btn btn-copy" id="copyFormLinkBtn" onclick="copyFormLink()">
+                🔗 Copy Form Link
+            </button>
+        </div>
+    </div>
 
-            <div class="script-content">
-                <p style="font-size: 18px; font-weight: 600; color: #1d334a; margin-bottom: 15px;">⚖️ Judith's Compliance Script:</p>
-                
-                <p style="margin-bottom: 15px;"><span style="background: #ef4444; color: white; padding: 3px 10px; border-radius: 15px; font-weight: 600;">OPENING</span></p>
-                
-                <p style="margin-bottom: 20px;"><strong>"Hi this is Judith with WebSwan.</strong> Your website is among a list of businesses that may not be in full compliance with state attorney regulations, which could potentially lead to legal issues and penalties.</p>
-                
-                <p style="margin-bottom: 20px;">I'm calling to offer you a <strong style="color: #ef4444; font-size: 18px;">FREE Website Compliance Audit</strong> — this normally costs $395, but today we're offering it at no cost to 5 businesses in your area."</p>
-                
-                <p style="margin-bottom: 15px;"><span style="background: #1d334a; color: white; padding: 3px 10px; border-radius: 15px; font-weight: 600;">SSL CERTIFICATE SCRIPT</span></p>
-                
-                <p style="margin-bottom: 15px; background: #fff0f0; padding: 15px; border-radius: 10px;">
-                    <strong>🔐 "I also noticed your site may not have an active SSL certificate.</strong> This means search engines like Google will display 'Not Secure' warnings to anyone trying to visit your website. It often indicates an outdated site that's more vulnerable to hackers and data breaches. We can include SSL security review in your free compliance audit."
-                </p>
-                
-                <p style="margin-bottom: 15px;"><span style="background: #1d334a; color: white; padding: 3px 10px; border-radius: 15px; font-weight: 600;">QUALIFYING QUESTIONS</span></p>
-                
-                <p style="margin-bottom: 10px;">✅ <strong>Would you want a free website compliance audit?</strong></p>
-                <p style="margin-bottom: 10px;">✅ <strong>What is the best number and time to reach you?</strong> (Need 10-15 min to present findings)</p>
-                
-                <p style="margin-bottom: 15px;"><span style="background: #ef4444; color: white; padding: 3px 10px; border-radius: 15px; font-weight: 600;">OBJECTION HANDLING</span></p>
-                
-                <p style="margin-bottom: 15px;"><em>"Can you email the audit results?"</em></p>
-                <p style="margin-bottom: 20px; background: #fff4e5; padding: 12px; border-radius: 10px;"><strong>Response:</strong> "Due to the sensitive nature of compliance audits and to protect our assessment methodology, we don't email results. This free audit requires a brief 10-15 minute phone consultation to walk you through the findings. Would you prefer a phone call or Zoom?"</p>
-            </div>
+    <!-- ================================================
+         SECTION 2: ESTIMATE BUILDER
+    ================================================ -->
+    <div class="card">
+        <div class="card-title">💰 Estimate Builder</div>
+        <div class="card-subtitle">Select services to build the estimate — then send it to your prospect via SMS</div>
+        <div class="section-divider"></div>
 
-            <!-- SCRIPT 2 LINKS -->
-            <div class="links-section">
-                <div class="links-title"><span>🔗</span> State Compliance Resources</div>
-                
-                <div class="link-item">
-                    <a href="https://www.google.com/search?q=state+of+florida+website+compliance+penalty&rlz=1CAIPNW_enUS1176&oq=state+of+virginia+website+compliance+penalty&gs_lcrp=EgZjaHJvbWUqCAgAEEUYJxg7MggIABBFGCcYOzITCAEQLhjHARixAxjRAxiABBiKBTIICAIQRRgnGDsyBggDEEUYOzIGCAQQRRg5MgYIBRBFGD0yBggGEEUYQTIGCAcQRRg80gEIMjI1NmowajSoAgGwAgHxBbVCuOBgMu2R8QW1QrjgYDLtkQ&sourceid=chrome&ie=UTF-8" target="_blank" class="link-url">
-                        🏛️ Florida State Compliance Penalties
-                    </a>
-                    <button class="copy-btn" onclick="copyLink(this, 'https://www.google.com/search?q=state+of+florida+website+compliance+penalty&rlz=1CAIPNW_enUS1176&oq=state+of+virginia+website+compliance+penalty&gs_lcrp=EgZjaHJvbWUqCAgAEEUYJxg7MggIABBFGCcYOzITCAEQLhjHARixAxjRAxiABBiKBTIICAIQRRgnGDsyBggDEEUYOzIGCAQQRRg5MgYIBRBFGD0yBggGEEUYQTIGCAcQRRg80gEIMjI1NmowajSoAgGwAgHxBbVCuOBgMu2R8QW1QrjgYDLtkQ&sourceid=chrome&ie=UTF-8')">
-                        📋 Copy Link
-                    </button>
-                </div>
-                
-                <div class="link-item">
-                    <a href="https://www.google.com/search?q=state+of+new+york+website+compliance+penalty&rlz=1CAIPNW_enUS1176&oq=state+of+new&gs_lcrp=EgZjaHJvbWUqCAgAEEUYJxg7MggIABBFGCcYOzIGCAEQRRg5MgYIAhAjGCcyEAgDEC4YkQIYsQMYgAQYigUyDQgEEC4YkQIYgAQYigUyDQgFEAAYkQIYgAQYigUyDQgGEAAYkQIYgAQYigUyBwgHEC4YgAQyBwgIEAAYgAQyDQgJEAAYkQIYgAQYigXSAQg3MTAyajBqOagCALACAA&sourceid=chrome&ie=UTF-8" target="_blank" class="link-url">
-                        🗽 New York State Compliance Penalties
-                    </a>
-                    <button class="copy-btn" onclick="copyLink(this, 'https://www.google.com/search?q=state+of+new+york+website+compliance+penalty&rlz=1CAIPNW_enUS1176&oq=state+of+new&gs_lcrp=EgZjaHJvbWUqCAgAEEUYJxg7MggIABBFGCcYOzIGCAEQRRg5MgYIAhAjGCcyEAgDEC4YkQIYsQMYgAQYigUyDQgEEC4YkQIYgAQYigUyDQgFEAAYkQIYgAQYigUyDQgGEAAYkQIYgAQYigUyBwgHEC4YgAQyBwgIEAAYgAQyDQgJEAAYkQIYgAQYigXSAQg3MTAyajBqOagCALACAA&sourceid=chrome&ie=UTF-8')">
-                        📋 Copy Link
-                    </button>
-                </div>
-                
-                <div class="link-item">
-                    <a href="https://www.google.com/search?q=all+states+website+compliance+penalty&rlz=1CAIPNW_enUS1176&oq=all+states&gs_lcrp=EgZjaHJvbWUqCAgAEEUYJxg7MggIABBFGCcYOzIPCAEQRRg5GIMBGLEDGIAEMg0IAhAuGK8BGMcBGIAEMgcIAxAAGIAEMgcIBBAAGIAEMgcIBRAAGIAEMgcIBhAAGIAEMgcIBxAAGIAEMgcICBAAGIAEMgcICRAAGI8C0gEIMzQ4NGowajmoAgCwAgA&sourceid=chrome&ie=UTF-8" target="_blank" class="link-url">
-                        🇺🇸 All States Compliance Penalties
-                    </a>
-                    <button class="copy-btn" onclick="copyLink(this, 'https://www.google.com/search?q=all+states+website+compliance+penalty&rlz=1CAIPNW_enUS1176&oq=all+states&gs_lcrp=EgZjaHJvbWUqCAgAEEUYJxg7MggIABBFGCcYOzIPCAEQRRg5GIMBGLEDGIAEMg0IAhAuGK8BGMcBGIAEMgcIAxAAGIAEMgcIBBAAGIAEMgcIBRAAGIAEMgcIBhAAGIAEMgcIBxAAGIAEMgcICBAAGIAEMgcICRAAGI8C0gEIMzQ4NGowajmoAgCwAgA&sourceid=chrome&ie=UTF-8')">
-                        📋 Copy Link
-                    </button>
-                </div>
+        <div class="estimate-section">
+            <p style="font-size:13px; font-weight:700; color:#4a5568; text-transform:uppercase; letter-spacing:1px; margin-bottom:14px;">
+                🔴 Mandatory (Compliance) &nbsp;|&nbsp; 🟡 Click to Select Add-Ons
+            </p>
 
-                <!-- ====================================
-                     STATE COMPLIANCE SEARCH WIDGET
-                ==================================== -->
-                <div class="state-compliance-widget">
-                    <div class="state-compliance-widget-title">
-                        <input type="checkbox" id="complianceToggle" checked>
-                        <span>🏛️ State Compliance Search</span>
+            <div class="pricing-grid">
+
+                <!-- ADDON: Custom Standard Web Design (NOT mandatory) -->
+                <div class="price-item" id="item-webdesign" onclick="toggleItem('webdesign', 999, 109, false)">
+                    <div class="price-checkbox"></div>
+                    <div class="price-info">
+                        <div class="price-name">Custom Standard Web Design</div>
+                        <div class="price-amount">$999 <span style="font-size:13px; color:#718096;">one-time</span></div>
+                        <div class="price-monthly">+ $109/mo hosting, maintenance & security</div>
                     </div>
+                </div>
 
-                    <div class="state-search-row">
-                        <input 
-                            type="text" 
-                            id="stateSearchInput" 
-                            class="state-search-input" 
-                            placeholder="Enter state name (e.g., California)"
-                            onkeypress="if(event.key==='Enter') searchState()"
-                        >
-                        <button class="state-search-btn" onclick="searchState()">
-                            🏛️ Check State
-                        </button>
+                <!-- MANDATORY: Compliance Banners -->
+                <div class="price-item mandatory selected" id="item-compliance" onclick="toggleItem('compliance', 300, 39, true)">
+                    <div class="price-checkbox">✓</div>
+                    <div class="price-info">
+                        <div class="price-name">Compliance Banners <span class="mandatory-badge">Required</span></div>
+                        <div class="price-amount">$300 <span style="font-size:13px; color:#ef4444;">one-time setup</span></div>
+                        <div class="price-monthly">+ $39/mo hosting & maintenance</div>
                     </div>
+                </div>
 
-                    <div class="quick-state-pills">
-                        <button class="state-pill" onclick="selectState('California')">California</button>
-                        <button class="state-pill" onclick="selectState('New York')">New York</button>
-                        <button class="state-pill" onclick="selectState('Texas')">Texas</button>
-                        <button class="state-pill" onclick="selectState('Florida')">Florida</button>
-                        <button class="state-pill" onclick="selectState('Georgia')">Georgia</button>
+                <!-- ADDON: Landing Page Lead Generation -->
+                <div class="price-item" id="item-landing" onclick="toggleItem('landing', 1599, 89, false)">
+                    <div class="price-checkbox"></div>
+                    <div class="price-info">
+                        <div class="price-name">Landing Page Lead Generation</div>
+                        <div class="price-amount">$1,599 <span style="font-size:13px; color:#718096;">one-time</span></div>
+                        <div class="price-monthly">+ $89/mo maintenance</div>
                     </div>
+                </div>
 
-                    <div id="stateResultBox" class="state-result-box">
-                        <div class="state-result-header">
-                            <div class="state-result-name" id="stateResultName"></div>
-                            <div class="state-result-actions">
-                                <a id="stateViewBtn" href="#" target="_blank" class="state-view-btn">
-                                    🔍 View Penalties
-                                </a>
-                                <button id="stateCopyBtn" class="state-copy-btn" onclick="copyStateLink()">
-                                    📋 Copy Link
-                                </button>
-                            </div>
+                <!-- ADDON: Start-Up App -->
+                <div class="price-item" id="item-startupapp" onclick="toggleItem('startupapp', 969, 69, false)" style="grid-column: 1 / -1; border-left: 4px solid #7c3aed;">
+                    <div class="price-checkbox"></div>
+                    <div class="price-info">
+                        <div class="price-name" style="color:#7c3aed; font-size:15px;">📱 Start-Up App <span style="background:#ede9fe; color:#7c3aed; font-size:10px; font-weight:700; padding:2px 8px; border-radius:10px; margin-left:6px;">NEW</span></div>
+                        <div class="price-amount" style="color:#7c3aed;">$969 <span style="font-size:13px; color:#718096;">one-time</span></div>
+                        <div class="price-monthly" style="color:#6d28d9;">+ $69/mo hosting & maintenance</div>
+                        <div class="price-desc" style="margin-top:6px; color:#4a5568;">
+                            Includes: <strong>📅 Calendar & booking appointment</strong> + <strong>📋 Question form</strong> (no booking required) + <strong>📱 Custom QR Code</strong> with your app link
                         </div>
-                        <div class="state-result-url" id="stateResultUrl"></div>
-                    </div>
-
-                    <div id="stateNotFound" class="state-not-found">
-                        ⚠️ State not found. Try: California, New York, Texas, Florida, Georgia, or any US state name.
                     </div>
                 </div>
-                <!-- END STATE COMPLIANCE SEARCH WIDGET -->
 
+                <!-- ADDON: Start-Up App — Real Estate Lead Form Add-On -->
+                <div class="price-item" id="item-realestateform" onclick="toggleItem('realestateform', 150, 0, false)" style="border-left: 3px dashed #7c3aed;">
+                    <div class="price-checkbox"></div>
+                    <div class="price-info">
+                        <div class="price-name">↳ Real Estate Lead Form <span style="background:#ede9fe; color:#7c3aed; font-size:10px; font-weight:700; padding:2px 8px; border-radius:10px; margin-left:4px;">App Add-On</span></div>
+                        <div class="price-amount">$150 <span style="font-size:13px; color:#718096;">one-time</span></div>
+                        <div class="price-desc">Capture real estate leads directly in your app</div>
+                    </div>
+                </div>
+
+                <!-- ADDON: Start-Up App — Additional Lead Generation Form -->
+                <div class="price-item" id="item-leadform" onclick="toggleItem('leadform', 150, 0, false)" style="border-left: 3px dashed #7c3aed;">
+                    <div class="price-checkbox"></div>
+                    <div class="price-info">
+                        <div class="price-name">↳ Additional Lead Generation Form <span style="background:#ede9fe; color:#7c3aed; font-size:10px; font-weight:700; padding:2px 8px; border-radius:10px; margin-left:4px;">App Add-On</span></div>
+                        <div class="price-amount">$150 <span style="font-size:13px; color:#718096;">per form</span></div>
+                        <div class="price-desc">Any additional lead generation or custom form</div>
+                    </div>
+                </div>
+
+                <!-- ADDON: Online Advertising — Full Page -->
+                <div class="price-item" id="item-adsfull" onclick="toggleItem('adsfull', 0, 197, false)">
+                    <div class="price-checkbox"></div>
+                    <div class="price-info">
+                        <div class="price-name">Online Advertising — Full Page</div>
+                        <div class="price-amount" style="color:#3b82f6;">$197<span style="font-size:13px;">/mo</span></div>
+                        <div class="price-desc" style="color:#10b981; font-weight:600;">✨ No setup fee when you have a web design with us!</div>
+                    </div>
+                </div>
+
+                <!-- ADDON: Online Advertising — Partial/Section -->
+                <div class="price-item" id="item-adspartial" onclick="toggleItem('adspartial', 0, 109, false)">
+                    <div class="price-checkbox"></div>
+                    <div class="price-info">
+                        <div class="price-name">Online Advertising — Partial/Section</div>
+                        <div class="price-amount" style="color:#3b82f6;">$109<span style="font-size:13px;">/mo</span></div>
+                        <div class="price-desc" style="color:#10b981; font-weight:600;">✨ No setup fee when you have a web design with us!</div>
+                    </div>
+                </div>
+
+                <!-- ADDON: Reputation Management -->
+                <div class="price-item" id="item-reputation" onclick="toggleItem('reputation', 0, 109, false)">
+                    <div class="price-checkbox"></div>
+                    <div class="price-info">
+                        <div class="price-name">Reputation Management</div>
+                        <div class="price-amount" style="color:#3b82f6;">$109<span style="font-size:13px;">/mo</span></div>
+                        <div class="price-desc">Monitor & protect your online reputation</div>
+                    </div>
+                </div>
+
+                <!-- ADDON: Logo Design -->
+                <div class="price-item" id="item-logo" onclick="toggleItem('logo', 195, 0, false)">
+                    <div class="price-checkbox"></div>
+                    <div class="price-info">
+                        <div class="price-name">Logo Design</div>
+                        <div class="price-amount">$195 <span style="font-size:13px; color:#718096;">one-time</span></div>
+                        <div class="price-desc">Professional brand logo</div>
+                    </div>
+                </div>
+
+                <!-- ADDON: Extra Links -->
+                <div class="price-item" id="item-links" onclick="toggleItem('links', 300, 0, false)">
+                    <div class="price-checkbox"></div>
+                    <div class="price-info">
+                        <div class="price-name">Extra Links</div>
+                        <div class="price-amount">$300 <span style="font-size:13px; color:#718096;">one-time</span></div>
+                        <div class="price-desc">Additional pages & navigation links</div>
+                    </div>
+                </div>
+
+                <!-- ADDON: Calendar & Form -->
+                <div class="price-item" id="item-calendar" onclick="toggleItem('calendar', 450, 0, false)">
+                    <div class="price-checkbox"></div>
+                    <div class="price-info">
+                        <div class="price-name">Calendar & Appointment Form</div>
+                        <div class="price-amount">$450 <span style="font-size:13px; color:#718096;">one-time</span></div>
+                        <div class="price-desc">Online booking + contact forms</div>
+                    </div>
+                </div>
+
+                <!-- ADDON: SEO Content -->
+                <div class="price-item" id="item-seo" onclick="toggleItem('seo', 250, 0, false)">
+                    <div class="price-checkbox"></div>
+                    <div class="price-info">
+                        <div class="price-name">SEO Content</div>
+                        <div class="price-amount">$250 <span style="font-size:13px; color:#718096;">per page</span></div>
+                        <div class="price-desc">Search engine optimized content</div>
+                    </div>
+                </div>
+
+                <!-- ADDON: Language Translator -->
+                <div class="price-item" id="item-translator" onclick="toggleItem('translator', 150, 0, false)">
+                    <div class="price-checkbox"></div>
+                    <div class="price-info">
+                        <div class="price-name">Language Translator</div>
+                        <div class="price-amount">$150 <span style="font-size:13px; color:#718096;">one-time setup</span></div>
+                        <div class="price-desc">Multi-language website support</div>
+                    </div>
+                </div>
+
+                <!-- ADDON: Custom QR Code -->
+                <div class="price-item" id="item-qr" onclick="toggleItem('qr', 55, 0, false)">
+                    <div class="price-checkbox"></div>
+                    <div class="price-info">
+                        <div class="price-name">Custom QR Code</div>
+                        <div class="price-amount">$55 <span style="font-size:13px; color:#718096;">one-time</span></div>
+                        <div class="price-desc">Branded QR code for your business</div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- TOTAL BOX -->
+            <div class="total-box">
+                <div class="total-box-title">📊 Project Total Estimate</div>
+                <div class="total-amount" id="totalAmount">$300</div>
+                <div class="total-note">One-time project investment</div>
+                <div class="total-breakdown" id="totalBreakdown"></div>
+                <div class="monthly-summary" id="monthlySummary"></div>
+            </div>
+
+            <div class="btn-row">
+                <button class="btn btn-orange" onclick="calculateEstimate()">
+                    🧮 Calculate Estimate
+                </button>
+                <button class="btn btn-sms" onclick="openSendEstimateModal()">
+                    💬 Send Estimate via SMS
+                </button>
             </div>
         </div>
+    </div>
 
-        <!-- SCRIPT 3: WEBSWAN ADVERTISING PLATFORM -->
-        <div class="script-card card-3">
-            <div class="script-header">
-                <div class="script-icon" style="background: rgba(59,130,246,0.1); color: #3b82f6;">📢</div>
-                <div>
-                    <div class="script-title">WebSwan Advertising Platform</div>
-                    <div class="script-subtitle">Get Found Where Clients Search</div>
-                </div>
-            </div>
+    <!-- FOOTER -->
+    <div class="ws-footer">
+        🦢 WebSwan • Judith • Custom Web Design • Compliance Audits • Advertising<br>
+        <span style="opacity:0.7; font-size:12px;">© 2026 WebSwan — All pricing confidential and property of WebSwan</span>
+    </div>
 
-            <div class="script-content">
-                <p style="font-size: 18px; font-weight: 600; color: #1d334a; margin-bottom: 15px;">📢 Judith's Advertising Script:</p>
-                
-                <p style="margin-bottom: 15px;"><span style="background: #3b82f6; color: white; padding: 3px 10px; border-radius: 15px; font-weight: 600;">OPENING</span></p>
-                
-                <p style="margin-bottom: 20px;"><strong>"Hi this is Judith with WebSwan.</strong> Besides designing professional UX/UI websites, we also have our own advertising platform designed to help small businesses like yours get noticed online.</p>
-                
-                <p style="margin-bottom: 20px;">We help you showcase your business exactly where your potential clients are already searching for your services. It's cost-effective and targeted to your local area."</p>
-                
-                <p style="margin-bottom: 15px;"><span style="background: #1d334a; color: white; padding: 3px 10px; border-radius: 15px; font-weight: 600;">QUALIFYING QUESTIONS</span></p>
-                
-                <p style="margin-bottom: 10px;">✅ <strong>Would you be interested in learning how WebSwan advertising can bring you more local customers?</strong></p>
-                <p style="margin-bottom: 10px;">✅ <strong>Are you currently advertising anywhere?</strong> (Google, Facebook, print, etc.)</p>
-                <p style="margin-bottom: 10px;">✅ <strong>What's your monthly advertising budget currently?</strong></p>
-                <p style="margin-bottom: 20px;">✅ <strong>Best time for a quick 10-minute call to explain our platform?</strong></p>
-                
-                <p style="margin-bottom: 15px;"><span style="background: #10b981; color: white; padding: 3px 10px; border-radius: 15px; font-weight: 600;">VALUE PROPOSITION</span></p>
-                
-                <p style="background: #e6f3ff; padding: 15px; border-radius: 10px;">
-                    <strong>💡 "Unlike Google Ads where you're competing with hundreds, WebSwan puts your business in front of motivated buyers actively looking for your services. No long-term contracts, and you only pay for results."</strong>
-                </p>
-            </div>
+</div><!-- end main-container -->
 
-            <div class="links-section">
-                <div class="links-title"><span>🔗</span> Advertising Resources</div>
-                
-                <div class="link-item">
-                    <a href="https://manage.multisiteadmin.com/lead_generator" target="_blank" class="link-url">
-                        🎯 WebSwan Prospect & Lead Tool
-                    </a>
-                    <button class="copy-btn" onclick="copyLink(this, 'https://manage.multisiteadmin.com/lead_generator')">
-                        📋 Copy Link
-                    </button>
-                </div>
-            </div>
-        </div>
-
-        <!-- WebSwan Footer -->
-        <div style="text-align: center; margin-top: 20px; padding: 20px; color: #666; border-top: 2px solid #f2970f;">
-            <p style="font-size: 14px;">🦢 WebSwan • Judith • Custom Web Design • Compliance Audits • Advertising</p>
-            <p style="font-size: 12px; margin-top: 10px;">© 2026 WebSwan - All scripts confidential and property of WebSwan</p>
+<!-- ================================================
+     MODAL: Send Estimate — Enter Prospect Phone
+================================================ -->
+<div class="modal-overlay" id="estimateModal">
+    <div class="modal-box">
+        <div class="modal-title">💬 Send Estimate via SMS</div>
+        <div class="modal-subtitle">Enter your prospect's phone number to send them the full estimate breakdown.</div>
+        <input type="tel" class="modal-input" id="estimatePhone" placeholder="(555) 555-5555" maxlength="15">
+        <div class="modal-buttons">
+            <button class="modal-cancel" onclick="closeEstimateModal()">Cancel</button>
+            <button class="btn btn-sms" style="flex:2; justify-content:center;" onclick="sendEstimateSMS()">
+                💬 Send Estimate Now
+            </button>
         </div>
     </div>
 </div>
 
+<!-- TOAST NOTIFICATION -->
+<div class="toast" id="toast">✅ Sent!</div>
+
 <script>
-    // ============================================
-    // TOGGLE SCRIPTS CONTAINER
-    // ============================================
-    function toggleScripts() {
-        const container = document.getElementById('scriptsContainer');
-        const button = document.querySelector('.script-toggle-btn');
-        
-        container.classList.toggle('active');
-        
-        if (container.classList.contains('active')) {
-            setTimeout(() => {
-                container.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }, 100);
-            button.innerHTML = '<span style="font-size: 28px;">📂</span> WebSwan Script Suite (Open) <span style="font-size: 28px;">📞</span>';
-            button.style.background = 'linear-gradient(45deg, #f2970f, #e08a0a)';
-            button.style.color = '#1d334a';
-        } else {
-            button.innerHTML = '<span style="font-size: 28px;">📋</span> WebSwan Script Suite <span style="font-size: 28px;">📞</span>';
-            button.style.background = 'linear-gradient(45deg, #1d334a, #2a4a6a)';
-            button.style.color = 'white';
-        }
-    }
-
-    // ============================================
-    // COPY LINK FUNCTIONALITY
-    // ============================================
-    function copyLink(button, link) {
-        navigator.clipboard.writeText(link).then(function() {
-            const originalText = button.innerHTML;
-            button.innerHTML = '✅ Copied!';
-            button.classList.add('copied');
-            setTimeout(function() {
-                button.innerHTML = '📋 Copy Link';
-                button.classList.remove('copied');
-            }, 2000);
-        }).catch(function(err) {
-            const textArea = document.createElement('textarea');
-            textArea.value = link;
-            document.body.appendChild(textArea);
-            textArea.select();
-            document.execCommand('copy');
-            document.body.removeChild(textArea);
-            button.innerHTML = '✅ Copied!';
-            button.classList.add('copied');
-            setTimeout(function() {
-                button.innerHTML = '📋 Copy Link';
-                button.classList.remove('copied');
-            }, 2000);
-        });
-    }
-
-    // ============================================
-    // STATE COMPLIANCE SEARCH
-    // ============================================
-
-    // State database — all 50 states mapped to compliance search URLs
-    const stateData = {
-        'alabama': { name: '🏛️ Alabama', url: 'https://www.google.com/search?q=state+of+alabama+website+compliance+penalty' },
-        'alaska': { name: '🏔️ Alaska', url: 'https://www.google.com/search?q=state+of+alaska+website+compliance+penalty' },
-        'arizona': { name: '🌵 Arizona', url: 'https://www.google.com/search?q=state+of+arizona+website+compliance+penalty' },
-        'arkansas': { name: '🏛️ Arkansas', url: 'https://www.google.com/search?q=state+of+arkansas+website+compliance+penalty' },
-        'california': { name: '🌅 California', url: 'https://www.google.com/search?q=state+of+california+website+compliance+penalty' },
-        'colorado': { name: '⛰️ Colorado', url: 'https://www.google.com/search?q=state+of+colorado+website+compliance+penalty' },
-        'connecticut': { name: '🏛️ Connecticut', url: 'https://www.google.com/search?q=state+of+connecticut+website+compliance+penalty' },
-        'delaware': { name: '🏛️ Delaware', url: 'https://www.google.com/search?q=state+of+delaware+website+compliance+penalty' },
-        'florida': { name: '🌴 Florida', url: 'https://www.google.com/search?q=state+of+florida+website+compliance+penalty' },
-        'georgia': { name: '🍑 Georgia', url: 'https://www.google.com/search?q=state+of+georgia+website+compliance+penalty' },
-        'hawaii': { name: '🌺 Hawaii', url: 'https://www.google.com/search?q=state+of+hawaii+website+compliance+penalty' },
-        'idaho': { name: '🥔 Idaho', url: 'https://www.google.com/search?q=state+of+idaho+website+compliance+penalty' },
-        'illinois': { name: '🏙️ Illinois', url: 'https://www.google.com/search?q=state+of+illinois+website+compliance+penalty' },
-        'indiana': { name: '🏛️ Indiana', url: 'https://www.google.com/search?q=state+of+indiana+website+compliance+penalty' },
-        'iowa': { name: '🌽 Iowa', url: 'https://www.google.com/search?q=state+of+iowa+website+compliance+penalty' },
-        'kansas': { name: '🌾 Kansas', url: 'https://www.google.com/search?q=state+of+kansas+website+compliance+penalty' },
-        'kentucky': { name: '🐎 Kentucky', url: 'https://www.google.com/search?q=state+of+kentucky+website+compliance+penalty' },
-        'louisiana': { name: '🎷 Louisiana', url: 'https://www.google.com/search?q=state+of+louisiana+website+compliance+penalty' },
-        'maine': { name: '🦞 Maine', url: 'https://www.google.com/search?q=state+of+maine+website+compliance+penalty' },
-        'maryland': { name: '🦀 Maryland', url: 'https://www.google.com/search?q=state+of+maryland+website+compliance+penalty' },
-        'massachusetts': { name: '🏛️ Massachusetts', url: 'https://www.google.com/search?q=state+of+massachusetts+website+compliance+penalty' },
-        'michigan': { name: '🚗 Michigan', url: 'https://www.google.com/search?q=state+of+michigan+website+compliance+penalty' },
-        'minnesota': { name: '❄️ Minnesota', url: 'https://www.google.com/search?q=state+of+minnesota+website+compliance+penalty' },
-        'mississippi': { name: '🏛️ Mississippi', url: 'https://www.google.com/search?q=state+of+mississippi+website+compliance+penalty' },
-        'missouri': { name: '🌉 Missouri', url: 'https://www.google.com/search?q=state+of+missouri+website+compliance+penalty' },
-        'montana': { name: '🦌 Montana', url: 'https://www.google.com/search?q=state+of+montana+website+compliance+penalty' },
-        'nebraska': { name: '🌽 Nebraska', url: 'https://www.google.com/search?q=state+of+nebraska+website+compliance+penalty' },
-        'nevada': { name: '🎰 Nevada', url: 'https://www.google.com/search?q=state+of+nevada+website+compliance+penalty' },
-        'new hampshire': { name: '🏔️ New Hampshire', url: 'https://www.google.com/search?q=state+of+new+hampshire+website+compliance+penalty' },
-        'new jersey': { name: '🏖️ New Jersey', url: 'https://www.google.com/search?q=state+of+new+jersey+website+compliance+penalty' },
-        'new mexico': { name: '🌶️ New Mexico', url: 'https://www.google.com/search?q=state+of+new+mexico+website+compliance+penalty' },
-        'new york': { name: '🗽 New York', url: 'https://www.google.com/search?q=state+of+new+york+website+compliance+penalty' },
-        'north carolina': { name: '🏛️ North Carolina', url: 'https://www.google.com/search?q=state+of+north+carolina+website+compliance+penalty' },
-        'north dakota': { name: '🌾 North Dakota', url: 'https://www.google.com/search?q=state+of+north+dakota+website+compliance+penalty' },
-        'ohio': { name: '🏛️ Ohio', url: 'https://www.google.com/search?q=state+of+ohio+website+compliance+penalty' },
-        'oklahoma': { name: '🌪️ Oklahoma', url: 'https://www.google.com/search?q=state+of+oklahoma+website+compliance+penalty' },
-        'oregon': { name: '🌲 Oregon', url: 'https://www.google.com/search?q=state+of+oregon+website+compliance+penalty' },
-        'pennsylvania': { name: '🔔 Pennsylvania', url: 'https://www.google.com/search?q=state+of+pennsylvania+website+compliance+penalty' },
-        'rhode island': { name: '🏛️ Rhode Island', url: 'https://www.google.com/search?q=state+of+rhode+island+website+compliance+penalty' },
-        'south carolina': { name: '🌴 South Carolina', url: 'https://www.google.com/search?q=state+of+south+carolina+website+compliance+penalty' },
-        'south dakota': { name: '🦅 South Dakota', url: 'https://www.google.com/search?q=state+of+south+dakota+website+compliance+penalty' },
-        'tennessee': { name: '🎸 Tennessee', url: 'https://www.google.com/search?q=state+of+tennessee+website+compliance+penalty' },
-        'texas': { name: '⭐ Texas', url: 'https://www.google.com/search?q=state+of+texas+website+compliance+penalty' },
-        'utah': { name: '🏜️ Utah', url: 'https://www.google.com/search?q=state+of+utah+website+compliance+penalty' },
-        'vermont': { name: '🍁 Vermont', url: 'https://www.google.com/search?q=state+of+vermont+website+compliance+penalty' },
-        'virginia': { name: '🏛️ Virginia', url: 'https://www.google.com/search?q=state+of+virginia+website+compliance+penalty' },
-        'washington': { name: '🌲 Washington', url: 'https://www.google.com/search?q=state+of+washington+website+compliance+penalty' },
-        'west virginia': { name: '⛰️ West Virginia', url: 'https://www.google.com/search?q=state+of+west+virginia+website+compliance+penalty' },
-        'wisconsin': { name: '🧀 Wisconsin', url: 'https://www.google.com/search?q=state+of+wisconsin+website+compliance+penalty' },
-        'wyoming': { name: '🤠 Wyoming', url: 'https://www.google.com/search?q=state+of+wyoming+website+compliance+penalty' }
+    // ================================================
+    // PRICING DATA
+    // ================================================
+    const items = {
+        webdesign:      { price: 999,  monthly: 109, label: 'Custom Standard Web Design',              mandatory: false, selected: false },
+        compliance:     { price: 300,  monthly: 39,  label: 'Compliance Banners',                      mandatory: true,  selected: true  },
+        landing:        { price: 1599, monthly: 89,  label: 'Landing Page Lead Generation',            mandatory: false, selected: false },
+        startupapp:     { price: 969,  monthly: 69,  label: 'Start-Up App (Calendar + Form + QR Code)',mandatory: false, selected: false },
+        realestateform: { price: 150,  monthly: 0,   label: '↳ App Add-On: Real Estate Lead Form',    mandatory: false, selected: false },
+        leadform:       { price: 150,  monthly: 0,   label: '↳ App Add-On: Additional Lead Gen Form', mandatory: false, selected: false },
+        adsfull:        { price: 0,    monthly: 197, label: 'Online Advertising — Full Page',          mandatory: false, selected: false },
+        adspartial:     { price: 0,    monthly: 109, label: 'Online Advertising — Partial/Section',    mandatory: false, selected: false },
+        reputation:     { price: 0,    monthly: 109, label: 'Reputation Management',                   mandatory: false, selected: false },
+        logo:           { price: 195,  monthly: 0,   label: 'Logo Design',                             mandatory: false, selected: false },
+        links:          { price: 300,  monthly: 0,   label: 'Extra Links',                             mandatory: false, selected: false },
+        calendar:       { price: 450,  monthly: 0,   label: 'Calendar & Appointment Form',             mandatory: false, selected: false },
+        seo:            { price: 250,  monthly: 0,   label: 'SEO Content (per page)',                  mandatory: false, selected: false },
+        translator:     { price: 150,  monthly: 0,   label: 'Language Translator',                     mandatory: false, selected: false },
+        qr:             { price: 55,   monthly: 0,   label: 'Custom QR Code',                          mandatory: false, selected: false }
     };
 
-    let currentStateUrl = '';
-
-    function selectState(stateName) {
-        document.getElementById('stateSearchInput').value = stateName;
-        // Highlight active pill
-        document.querySelectorAll('.state-pill').forEach(p => p.classList.remove('active'));
-        event.target.classList.add('active');
-        searchState();
+    // ================================================
+    // TOGGLE ITEM SELECTION
+    // ================================================
+    function toggleItem(key, price, monthly, mandatory) {
+        if (mandatory) return; // mandatory items can't be deselected
+        items[key].selected = !items[key].selected;
+        const el = document.getElementById('item-' + key);
+        const checkbox = el.querySelector('.price-checkbox');
+        if (items[key].selected) {
+            el.classList.add('selected');
+            checkbox.textContent = '✓';
+        } else {
+            el.classList.remove('selected');
+            checkbox.textContent = '';
+        }
+        calculateEstimate();
     }
 
-    function searchState() {
-        const input = document.getElementById('stateSearchInput').value.trim().toLowerCase();
-        const resultBox = document.getElementById('stateResultBox');
-        const notFound = document.getElementById('stateNotFound');
+    // ================================================
+    // CALCULATE ESTIMATE
+    // ================================================
+    function calculateEstimate() {
+        let total = 0;
+        let monthlyTotal = 0;
+        let breakdown = '';
+        let monthlyBreakdown = '';
 
-        // Reset
-        resultBox.classList.remove('visible');
-        notFound.classList.remove('visible');
-
-        if (!input) return;
-
-        // Find match (exact or partial)
-        let match = null;
-        for (const key in stateData) {
-            if (key === input || key.startsWith(input) || input.includes(key) || key.includes(input)) {
-                match = stateData[key];
-                break;
+        for (const key in items) {
+            if (items[key].selected) {
+                total += items[key].price;
+                if (items[key].monthly > 0) {
+                    monthlyTotal += items[key].monthly;
+                }
+                breakdown += `<div class="breakdown-item">
+                    <span>${items[key].label}</span>
+                    <span>$${items[key].price.toLocaleString()}</span>
+                </div>`;
+                if (items[key].monthly > 0) {
+                    monthlyBreakdown += `${items[key].label}: $${items[key].monthly}/mo | `;
+                }
             }
         }
 
-        if (match) {
-            currentStateUrl = match.url;
-            document.getElementById('stateResultName').textContent = match.name + ' — Website Compliance Penalties';
-            document.getElementById('stateViewBtn').href = match.url;
-            document.getElementById('stateResultUrl').textContent = match.url;
-            resultBox.classList.add('visible');
-            notFound.classList.remove('visible');
+        document.getElementById('totalAmount').textContent = '$' + total.toLocaleString();
+        document.getElementById('totalBreakdown').innerHTML = breakdown;
+
+        if (monthlyTotal > 0) {
+            document.getElementById('monthlySummary').innerHTML =
+                `📅 Monthly payments: <strong>$${monthlyTotal}/mo</strong><br>
+                 <span style="font-size:11px; opacity:0.8;">${monthlyBreakdown.slice(0, -3)}</span>`;
         } else {
-            notFound.classList.add('visible');
-            resultBox.classList.remove('visible');
+            document.getElementById('monthlySummary').innerHTML = '';
         }
+
+        return { total, monthlyTotal };
     }
 
-    function copyStateLink() {
-        if (!currentStateUrl) return;
-        const btn = document.getElementById('stateCopyBtn');
-        navigator.clipboard.writeText(currentStateUrl).then(function() {
-            btn.innerHTML = '✅ Copied!';
+    // ================================================
+    // BUILD ESTIMATE TEXT FOR SMS
+    // ================================================
+    function buildEstimateText() {
+        const { total, monthlyTotal } = calculateEstimate();
+        let lines = ['🦢 WebSwan Project Estimate', '================================'];
+        for (const key in items) {
+            if (items[key].selected) {
+                let line = `✅ ${items[key].label}: $${items[key].price.toLocaleString()}`;
+                if (items[key].monthly > 0) line += ` (+ $${items[key].monthly}/mo)`;
+                lines.push(line);
+            }
+        }
+        lines.push('================================');
+        lines.push(`💰 TOTAL: $${total.toLocaleString()} one-time`);
+        if (monthlyTotal > 0) lines.push(`📅 Monthly: $${monthlyTotal}/mo ongoing`);
+        lines.push('');
+        lines.push('Questions? Contact Judith at WebSwan!');
+        lines.push('🌐 webswan.com');
+        return lines.join('\n');
+    }
+
+    // ================================================
+    // OPEN / CLOSE ESTIMATE MODAL
+    // ================================================
+    function openSendEstimateModal() {
+        calculateEstimate();
+        document.getElementById('estimatePhone').value = '';
+        document.getElementById('estimateModal').classList.add('open');
+        setTimeout(() => document.getElementById('estimatePhone').focus(), 200);
+    }
+    function closeEstimateModal() {
+        document.getElementById('estimateModal').classList.remove('open');
+    }
+
+    // ================================================
+    // SEND ESTIMATE VIA SMS
+    // ================================================
+    function sendEstimateSMS() {
+        const phone = document.getElementById('estimatePhone').value.replace(/\D/g,'');
+        if (phone.length < 10) {
+            alert('Please enter a valid phone number (10 digits).');
+            return;
+        }
+        const msg = buildEstimateText();
+        const smsUrl = 'sms:' + phone + '?body=' + encodeURIComponent(msg);
+        window.open(smsUrl, '_blank');
+        closeEstimateModal();
+        showToast('📤 Estimate sent to ' + formatPhone(phone) + '!');
+    }
+
+    // ================================================
+    // SUBMIT FORM VIA SMS — sends to Judith 9172240828
+    // ================================================
+    function submitFormViaSMS() {
+        const name     = document.getElementById('pName').value.trim();
+        const phone    = document.getElementById('pPhone').value.trim();
+        const business = document.getElementById('pBusiness').value.trim();
+        const url      = document.getElementById('pUrl').value.trim();
+        const service  = document.getElementById('pService').value;
+
+        if (!name || !phone || !business) {
+            alert('Please fill in Name, Phone Number, and Business Name before submitting.');
+            return;
+        }
+
+        const msg = [
+            '🦢 NEW WEBSWAN PROSPECT',
+            '========================',
+            '👤 Name: ' + name,
+            '📱 Phone: ' + phone,
+            '🏢 Business: ' + business,
+            '🌐 URL: ' + (url || 'Not provided'),
+            '🛠️ Service: ' + (service || 'Not selected'),
+            '========================',
+            '📅 Submitted: ' + new Date().toLocaleString()
+        ].join('\n');
+
+        // Texts Judith at 9172240828
+        const smsUrl = 'sms:9172240828?body=' + encodeURIComponent(msg);
+        window.open(smsUrl, '_blank');
+        showToast('💬 Form submitted to Judith!');
+    }
+
+    // ================================================
+    // COPY FORM LINK
+    // ================================================
+    function copyFormLink() {
+        const link = window.location.href.split('?')[0];
+        const btn = document.getElementById('copyFormLinkBtn');
+        navigator.clipboard.writeText(link).then(function() {
+            btn.innerHTML = '✅ Link Copied!';
             btn.classList.add('copied');
+            showToast('🔗 Form link copied — send to your prospect!');
             setTimeout(function() {
-                btn.innerHTML = '📋 Copy Link';
+                btn.innerHTML = '🔗 Copy Form Link';
                 btn.classList.remove('copied');
-            }, 2000);
+            }, 3000);
         }).catch(function() {
             const ta = document.createElement('textarea');
-            ta.value = currentStateUrl;
+            ta.value = link;
             document.body.appendChild(ta);
             ta.select();
             document.execCommand('copy');
             document.body.removeChild(ta);
-            btn.innerHTML = '✅ Copied!';
+            btn.innerHTML = '✅ Link Copied!';
             btn.classList.add('copied');
+            showToast('🔗 Form link copied — send to your prospect!');
             setTimeout(function() {
-                btn.innerHTML = '📋 Copy Link';
+                btn.innerHTML = '🔗 Copy Form Link';
                 btn.classList.remove('copied');
-            }, 2000);
+            }, 3000);
         });
     }
 
-    // ============================================
-    // INITIALIZATION
-    // ============================================
-    document.addEventListener('DOMContentLoaded', function() {
-        console.log('🦢 WebSwan Script Suite Ready - Judith is ready to call!');
-        const copyButtons = document.querySelectorAll('.copy-btn');
-        copyButtons.forEach(btn => {
-            btn.addEventListener('dblclick', function(e) { e.preventDefault(); });
-        });
+    // ================================================
+    // TOAST HELPER
+    // ================================================
+    function showToast(msg) {
+        const t = document.getElementById('toast');
+        t.textContent = msg;
+        t.classList.add('show');
+        setTimeout(() => t.classList.remove('show'), 3500);
+    }
+
+    function formatPhone(digits) {
+        if (digits.length === 10) return '(' + digits.slice(0,3) + ') ' + digits.slice(3,6) + '-' + digits.slice(6);
+        return digits;
+    }
+
+    // Close modal on overlay click
+    document.getElementById('estimateModal').addEventListener('click', function(e) {
+        if (e.target === this) closeEstimateModal();
     });
 
-    // Keyboard shortcut Alt+S
-    document.addEventListener('keydown', function(e) {
-        if (e.altKey && e.key === 's') {
-            e.preventDefault();
-            toggleScripts();
-        }
+    // Enter key on phone input sends estimate
+    document.getElementById('estimatePhone').addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') sendEstimateSMS();
     });
+
+    // Calculate on load to set initial total
+    document.addEventListener('DOMContentLoaded', calculateEstimate);
+    calculateEstimate();
 </script>
-
 </body>
 </html>
