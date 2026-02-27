@@ -5,10 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WebSwan - Cold Call Scripts</title>
     <style>
-        /* ============================================
-           SCRIPT 1: CUSTOM UX/UI WEB DESIGN
-           Premium, Trust-Building Aesthetic
-        ============================================ */
         * {
             margin: 0;
             padding: 0;
@@ -36,7 +32,6 @@
             border: 1px solid rgba(255,255,255,0.3);
         }
 
-        /* WebSwan Branding */
         .webswan-header {
             display: flex;
             align-items: center;
@@ -74,7 +69,6 @@
             letter-spacing: 2px;
         }
 
-        /* Main Script Button - The Star! */
         .script-toggle-btn {
             width: 100%;
             padding: 25px;
@@ -104,26 +98,20 @@
             border-color: white;
         }
 
-        .script-toggle-btn i {
-            font-size: 28px;
-        }
+        .script-toggle-btn i { font-size: 28px; }
 
-        /* Scripts Container - Hidden by Default */
         .scripts-container {
             display: none;
             animation: fadeIn 0.5s ease;
         }
 
-        .scripts-container.active {
-            display: block;
-        }
+        .scripts-container.active { display: block; }
 
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(-20px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Individual Script Cards */
         .script-card {
             background: white;
             border-radius: 20px;
@@ -168,7 +156,6 @@
             margin-top: 5px;
         }
 
-        /* Script Content - Cold Call Scripts */
         .script-content {
             background: #f8faff;
             padding: 25px;
@@ -181,9 +168,7 @@
             position: relative;
         }
 
-        .script-content strong {
-            color: #f2970f;
-        }
+        .script-content strong { color: #f2970f; }
 
         .script-content em {
             color: #1d334a;
@@ -193,7 +178,6 @@
             border-radius: 5px;
         }
 
-        /* Links Section with Copy Buttons */
         .links-section {
             margin-top: 25px;
             border-top: 2px dashed #e2e8f0;
@@ -236,9 +220,7 @@
             padding-right: 15px;
         }
 
-        .link-url:hover {
-            color: #f2970f;
-        }
+        .link-url:hover { color: #f2970f; }
 
         .copy-btn {
             background: #1d334a;
@@ -255,57 +237,231 @@
             gap: 5px;
         }
 
-        .copy-btn:hover {
-            background: #f2970f;
-            transform: scale(1.05);
-        }
+        .copy-btn:hover { background: #f2970f; transform: scale(1.05); }
+        .copy-btn.copied { background: #10b981; }
 
-        .copy-btn.copied {
-            background: #10b981;
-        }
-
-        /* Card Colors */
         .card-1 { border-left-color: #f2970f; }
         .card-2 { border-left-color: #ef4444; }
         .card-3 { border-left-color: #3b82f6; }
 
-        /* Compliance Badge */
-        .compliance-badge {
-            display: inline-block;
-            background: #fee2e2;
-            color: #ef4444;
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: 600;
-            margin-left: 15px;
+        /* ============================================
+           STATE COMPLIANCE SEARCH WIDGET
+        ============================================ */
+        .state-compliance-widget {
+            background: linear-gradient(135deg, #e8f4fd 0%, #d1ecf1 100%);
+            border: 2px solid #bee3f8;
+            border-radius: 16px;
+            padding: 25px;
+            margin-top: 25px;
         }
 
-        /* Responsive */
+        .state-compliance-widget-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 17px;
+            font-weight: 700;
+            color: #1d334a;
+            margin-bottom: 18px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid #bee3f8;
+        }
+
+        .state-compliance-widget-title input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+            accent-color: #2b6cb0;
+        }
+
+        .state-search-row {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 16px;
+            align-items: center;
+        }
+
+        .state-search-input {
+            flex: 1;
+            padding: 12px 18px;
+            border: 2px solid #bee3f8;
+            border-radius: 12px;
+            font-size: 15px;
+            color: #1d334a;
+            background: white;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .state-search-input:focus {
+            border-color: #3182ce;
+            box-shadow: 0 0 0 3px rgba(49,130,206,0.15);
+        }
+
+        .state-search-btn {
+            background: linear-gradient(45deg, #2b6cb0, #3182ce);
+            color: white;
+            border: none;
+            padding: 12px 22px;
+            border-radius: 12px;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            white-space: nowrap;
+        }
+
+        .state-search-btn:hover {
+            background: linear-gradient(45deg, #2c5282, #2b6cb0);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(43,108,176,0.35);
+        }
+
+        .quick-state-pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+
+        .state-pill {
+            background: white;
+            border: 2px solid #bee3f8;
+            color: #2b6cb0;
+            padding: 6px 16px;
+            border-radius: 30px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .state-pill:hover, .state-pill.active {
+            background: #2b6cb0;
+            color: white;
+            border-color: #2b6cb0;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 10px rgba(43,108,176,0.3);
+        }
+
+        .state-result-box {
+            display: none;
+            background: white;
+            border: 2px solid #bee3f8;
+            border-radius: 14px;
+            padding: 18px 20px;
+            margin-top: 12px;
+            animation: slideDown 0.3s ease;
+        }
+
+        .state-result-box.visible { display: block; }
+
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .state-result-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 12px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .state-result-name {
+            font-size: 16px;
+            font-weight: 700;
+            color: #1d334a;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .state-result-actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .state-view-btn {
+            background: linear-gradient(45deg, #2b6cb0, #3182ce);
+            color: white;
+            border: none;
+            padding: 8px 18px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .state-view-btn:hover {
+            background: linear-gradient(45deg, #2c5282, #2b6cb0);
+            transform: scale(1.04);
+        }
+
+        .state-copy-btn {
+            background: #1d334a;
+            color: white;
+            border: none;
+            padding: 8px 18px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .state-copy-btn:hover { background: #f2970f; transform: scale(1.04); }
+        .state-copy-btn.copied { background: #10b981; }
+
+        .state-result-url {
+            font-size: 12px;
+            color: #718096;
+            word-break: break-all;
+            margin-top: 8px;
+            padding: 8px 12px;
+            background: #f7fafc;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .state-not-found {
+            display: none;
+            background: #fff5f5;
+            border: 1px solid #fed7d7;
+            border-radius: 10px;
+            padding: 14px 18px;
+            color: #c53030;
+            font-size: 14px;
+            font-weight: 600;
+            margin-top: 12px;
+        }
+
+        .state-not-found.visible { display: block; }
+
         @media (max-width: 768px) {
-            .swan-container {
-                padding: 25px;
-            }
-            
-            .script-toggle-btn {
-                font-size: 18px;
-                padding: 20px;
-            }
-            
-            .script-title {
-                font-size: 20px;
-            }
-            
-            .link-item {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 10px;
-            }
-            
-            .copy-btn {
-                width: 100%;
-                justify-content: center;
-            }
+            .swan-container { padding: 25px; }
+            .script-toggle-btn { font-size: 18px; padding: 20px; }
+            .script-title { font-size: 20px; }
+            .link-item { flex-direction: column; align-items: flex-start; gap: 10px; }
+            .copy-btn { width: 100%; justify-content: center; }
+            .state-search-row { flex-direction: column; }
+            .state-search-btn { width: 100%; justify-content: center; }
+            .state-result-actions { width: 100%; }
+            .state-view-btn, .state-copy-btn { flex: 1; justify-content: center; }
         }
     </style>
 </head>
@@ -314,28 +470,24 @@
 <div class="swan-container">
     <!-- WebSwan Header -->
     <div class="webswan-header">
-        <div class="swan-logo">
-            🦢
-        </div>
+        <div class="swan-logo">🦢</div>
         <div class="swan-title">
             <h1>WebSwan</h1>
             <p>Judith's Cold Call Scripts • 2026</p>
         </div>
     </div>
 
-    <!-- MAIN SCRIPT BUTTON - Click to Reveal All Scripts -->
+    <!-- MAIN SCRIPT BUTTON -->
     <button class="script-toggle-btn" onclick="toggleScripts()">
         <span style="font-size: 28px;">📋</span> 
         WebSwan Script Suite
         <span style="font-size: 28px;">📞</span>
     </button>
 
-    <!-- SCRIPTS CONTAINER - All 3 Scripts with Links -->
+    <!-- SCRIPTS CONTAINER -->
     <div id="scriptsContainer" class="scripts-container">
         
-        <!-- ============================================ -->
-        <!-- SCRIPT 1: CUSTOM UX/UI WEB DESIGN (Judith)   -->
-        <!-- ============================================ -->
+        <!-- SCRIPT 1: CUSTOM UX/UI WEB DESIGN -->
         <div class="script-card card-1">
             <div class="script-header">
                 <div class="script-icon" style="background: rgba(242,151,15,0.1); color: #f2970f;">🎨</div>
@@ -371,11 +523,8 @@
                 <p><strong>📅 Presentation:</strong> 10-15 minute phone/Zoom call</p>
             </div>
 
-            <!-- SCRIPT 1 LINKS with Copy Buttons -->
             <div class="links-section">
-                <div class="links-title">
-                    <span>🔗</span> Custom Web Design Resources
-                </div>
+                <div class="links-title"><span>🔗</span> Custom Web Design Resources</div>
                 
                 <div class="link-item">
                     <a href="https://www.google.com/search?q=price+range+for+custom+web+design+ux+ui+from+web+developer&rlz=1CAIPNW_enUS1176&oq=price+range+for+custom+web+design+ux+ui+from+web+developer&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIHCAEQIRigATIHCAIQIRigATIHCAMQIRigATIHCAQQIRirAtIBCTEyNzQ5ajBqOagCALACAA&sourceid=chrome&ie=UTF-8" target="_blank" class="link-url">
@@ -397,9 +546,7 @@
             </div>
         </div>
 
-        <!-- ============================================ -->
-        <!-- SCRIPT 2: WEBSITE COMPLIANCE & SSL           -->
-        <!-- ============================================ -->
+        <!-- SCRIPT 2: WEBSITE COMPLIANCE & SSL -->
         <div class="script-card card-2">
             <div class="script-header">
                 <div class="script-icon" style="background: rgba(239,68,68,0.1); color: #ef4444;">⚖️</div>
@@ -435,11 +582,9 @@
                 <p style="margin-bottom: 20px; background: #fff4e5; padding: 12px; border-radius: 10px;"><strong>Response:</strong> "Due to the sensitive nature of compliance audits and to protect our assessment methodology, we don't email results. This free audit requires a brief 10-15 minute phone consultation to walk you through the findings. Would you prefer a phone call or Zoom?"</p>
             </div>
 
-            <!-- SCRIPT 2 LINKS with Copy Buttons -->
+            <!-- SCRIPT 2 LINKS -->
             <div class="links-section">
-                <div class="links-title">
-                    <span>🔗</span> State Compliance Resources
-                </div>
+                <div class="links-title"><span>🔗</span> State Compliance Resources</div>
                 
                 <div class="link-item">
                     <a href="https://www.google.com/search?q=state+of+florida+website+compliance+penalty&rlz=1CAIPNW_enUS1176&oq=state+of+virginia+website+compliance+penalty&gs_lcrp=EgZjaHJvbWUqCAgAEEUYJxg7MggIABBFGCcYOzITCAEQLhjHARixAxjRAxiABBiKBTIICAIQRRgnGDsyBggDEEUYOzIGCAQQRRg5MgYIBRBFGD0yBggGEEUYQTIGCAcQRRg80gEIMjI1NmowajSoAgGwAgHxBbVCuOBgMu2R8QW1QrjgYDLtkQ&sourceid=chrome&ie=UTF-8" target="_blank" class="link-url">
@@ -467,12 +612,62 @@
                         📋 Copy Link
                     </button>
                 </div>
+
+                <!-- ====================================
+                     STATE COMPLIANCE SEARCH WIDGET
+                ==================================== -->
+                <div class="state-compliance-widget">
+                    <div class="state-compliance-widget-title">
+                        <input type="checkbox" id="complianceToggle" checked>
+                        <span>🏛️ State Compliance Search</span>
+                    </div>
+
+                    <div class="state-search-row">
+                        <input 
+                            type="text" 
+                            id="stateSearchInput" 
+                            class="state-search-input" 
+                            placeholder="Enter state name (e.g., California)"
+                            onkeypress="if(event.key==='Enter') searchState()"
+                        >
+                        <button class="state-search-btn" onclick="searchState()">
+                            🏛️ Check State
+                        </button>
+                    </div>
+
+                    <div class="quick-state-pills">
+                        <button class="state-pill" onclick="selectState('California')">California</button>
+                        <button class="state-pill" onclick="selectState('New York')">New York</button>
+                        <button class="state-pill" onclick="selectState('Texas')">Texas</button>
+                        <button class="state-pill" onclick="selectState('Florida')">Florida</button>
+                        <button class="state-pill" onclick="selectState('Georgia')">Georgia</button>
+                    </div>
+
+                    <div id="stateResultBox" class="state-result-box">
+                        <div class="state-result-header">
+                            <div class="state-result-name" id="stateResultName"></div>
+                            <div class="state-result-actions">
+                                <a id="stateViewBtn" href="#" target="_blank" class="state-view-btn">
+                                    🔍 View Penalties
+                                </a>
+                                <button id="stateCopyBtn" class="state-copy-btn" onclick="copyStateLink()">
+                                    📋 Copy Link
+                                </button>
+                            </div>
+                        </div>
+                        <div class="state-result-url" id="stateResultUrl"></div>
+                    </div>
+
+                    <div id="stateNotFound" class="state-not-found">
+                        ⚠️ State not found. Try: California, New York, Texas, Florida, Georgia, or any US state name.
+                    </div>
+                </div>
+                <!-- END STATE COMPLIANCE SEARCH WIDGET -->
+
             </div>
         </div>
 
-        <!-- ============================================ -->
-        <!-- SCRIPT 3: WEBSWAN ADVERTISING PLATFORM       -->
-        <!-- ============================================ -->
+        <!-- SCRIPT 3: WEBSWAN ADVERTISING PLATFORM -->
         <div class="script-card card-3">
             <div class="script-header">
                 <div class="script-icon" style="background: rgba(59,130,246,0.1); color: #3b82f6;">📢</div>
@@ -505,11 +700,8 @@
                 </p>
             </div>
 
-            <!-- SCRIPT 3 LINKS with Copy Buttons -->
             <div class="links-section">
-                <div class="links-title">
-                    <span>🔗</span> Advertising Resources
-                </div>
+                <div class="links-title"><span>🔗</span> Advertising Resources</div>
                 
                 <div class="link-item">
                     <a href="https://manage.multisiteadmin.com/lead_generator" target="_blank" class="link-url">
@@ -532,8 +724,7 @@
 
 <script>
     // ============================================
-    // SCRIPT 1: TOGGLE SCRIPTS CONTAINER
-    // UX/UI - Smooth reveal with animation
+    // TOGGLE SCRIPTS CONTAINER
     // ============================================
     function toggleScripts() {
         const container = document.getElementById('scriptsContainer');
@@ -542,12 +733,9 @@
         container.classList.toggle('active');
         
         if (container.classList.contains('active')) {
-            // Smooth scroll to scripts
             setTimeout(() => {
                 container.scrollIntoView({ behavior: 'smooth', block: 'start' });
             }, 100);
-            
-            // Button feedback
             button.innerHTML = '<span style="font-size: 28px;">📂</span> WebSwan Script Suite (Open) <span style="font-size: 28px;">📞</span>';
             button.style.background = 'linear-gradient(45deg, #f2970f, #e08a0a)';
             button.style.color = '#1d334a';
@@ -559,37 +747,26 @@
     }
 
     // ============================================
-    // SCRIPT 2: COPY LINK FUNCTIONALITY
-    // With visual feedback - "Copied!" animation
+    // COPY LINK FUNCTIONALITY
     // ============================================
     function copyLink(button, link) {
-        // Copy to clipboard
         navigator.clipboard.writeText(link).then(function() {
-            // Store original text
             const originalText = button.innerHTML;
-            
-            // Change button to "Copied!"
             button.innerHTML = '✅ Copied!';
             button.classList.add('copied');
-            
-            // Reset after 2 seconds
             setTimeout(function() {
                 button.innerHTML = '📋 Copy Link';
                 button.classList.remove('copied');
             }, 2000);
-            
         }).catch(function(err) {
-            // Fallback for older browsers
             const textArea = document.createElement('textarea');
             textArea.value = link;
             document.body.appendChild(textArea);
             textArea.select();
             document.execCommand('copy');
             document.body.removeChild(textArea);
-            
             button.innerHTML = '✅ Copied!';
             button.classList.add('copied');
-            
             setTimeout(function() {
                 button.innerHTML = '📋 Copy Link';
                 button.classList.remove('copied');
@@ -598,25 +775,144 @@
     }
 
     // ============================================
-    // SCRIPT 3: INITIALIZATION & UTILITIES
-    // Auto-open first script? No - user clicks button
+    // STATE COMPLIANCE SEARCH
+    // ============================================
+
+    // State database — all 50 states mapped to compliance search URLs
+    const stateData = {
+        'alabama': { name: '🏛️ Alabama', url: 'https://www.google.com/search?q=state+of+alabama+website+compliance+penalty' },
+        'alaska': { name: '🏔️ Alaska', url: 'https://www.google.com/search?q=state+of+alaska+website+compliance+penalty' },
+        'arizona': { name: '🌵 Arizona', url: 'https://www.google.com/search?q=state+of+arizona+website+compliance+penalty' },
+        'arkansas': { name: '🏛️ Arkansas', url: 'https://www.google.com/search?q=state+of+arkansas+website+compliance+penalty' },
+        'california': { name: '🌅 California', url: 'https://www.google.com/search?q=state+of+california+website+compliance+penalty' },
+        'colorado': { name: '⛰️ Colorado', url: 'https://www.google.com/search?q=state+of+colorado+website+compliance+penalty' },
+        'connecticut': { name: '🏛️ Connecticut', url: 'https://www.google.com/search?q=state+of+connecticut+website+compliance+penalty' },
+        'delaware': { name: '🏛️ Delaware', url: 'https://www.google.com/search?q=state+of+delaware+website+compliance+penalty' },
+        'florida': { name: '🌴 Florida', url: 'https://www.google.com/search?q=state+of+florida+website+compliance+penalty' },
+        'georgia': { name: '🍑 Georgia', url: 'https://www.google.com/search?q=state+of+georgia+website+compliance+penalty' },
+        'hawaii': { name: '🌺 Hawaii', url: 'https://www.google.com/search?q=state+of+hawaii+website+compliance+penalty' },
+        'idaho': { name: '🥔 Idaho', url: 'https://www.google.com/search?q=state+of+idaho+website+compliance+penalty' },
+        'illinois': { name: '🏙️ Illinois', url: 'https://www.google.com/search?q=state+of+illinois+website+compliance+penalty' },
+        'indiana': { name: '🏛️ Indiana', url: 'https://www.google.com/search?q=state+of+indiana+website+compliance+penalty' },
+        'iowa': { name: '🌽 Iowa', url: 'https://www.google.com/search?q=state+of+iowa+website+compliance+penalty' },
+        'kansas': { name: '🌾 Kansas', url: 'https://www.google.com/search?q=state+of+kansas+website+compliance+penalty' },
+        'kentucky': { name: '🐎 Kentucky', url: 'https://www.google.com/search?q=state+of+kentucky+website+compliance+penalty' },
+        'louisiana': { name: '🎷 Louisiana', url: 'https://www.google.com/search?q=state+of+louisiana+website+compliance+penalty' },
+        'maine': { name: '🦞 Maine', url: 'https://www.google.com/search?q=state+of+maine+website+compliance+penalty' },
+        'maryland': { name: '🦀 Maryland', url: 'https://www.google.com/search?q=state+of+maryland+website+compliance+penalty' },
+        'massachusetts': { name: '🏛️ Massachusetts', url: 'https://www.google.com/search?q=state+of+massachusetts+website+compliance+penalty' },
+        'michigan': { name: '🚗 Michigan', url: 'https://www.google.com/search?q=state+of+michigan+website+compliance+penalty' },
+        'minnesota': { name: '❄️ Minnesota', url: 'https://www.google.com/search?q=state+of+minnesota+website+compliance+penalty' },
+        'mississippi': { name: '🏛️ Mississippi', url: 'https://www.google.com/search?q=state+of+mississippi+website+compliance+penalty' },
+        'missouri': { name: '🌉 Missouri', url: 'https://www.google.com/search?q=state+of+missouri+website+compliance+penalty' },
+        'montana': { name: '🦌 Montana', url: 'https://www.google.com/search?q=state+of+montana+website+compliance+penalty' },
+        'nebraska': { name: '🌽 Nebraska', url: 'https://www.google.com/search?q=state+of+nebraska+website+compliance+penalty' },
+        'nevada': { name: '🎰 Nevada', url: 'https://www.google.com/search?q=state+of+nevada+website+compliance+penalty' },
+        'new hampshire': { name: '🏔️ New Hampshire', url: 'https://www.google.com/search?q=state+of+new+hampshire+website+compliance+penalty' },
+        'new jersey': { name: '🏖️ New Jersey', url: 'https://www.google.com/search?q=state+of+new+jersey+website+compliance+penalty' },
+        'new mexico': { name: '🌶️ New Mexico', url: 'https://www.google.com/search?q=state+of+new+mexico+website+compliance+penalty' },
+        'new york': { name: '🗽 New York', url: 'https://www.google.com/search?q=state+of+new+york+website+compliance+penalty' },
+        'north carolina': { name: '🏛️ North Carolina', url: 'https://www.google.com/search?q=state+of+north+carolina+website+compliance+penalty' },
+        'north dakota': { name: '🌾 North Dakota', url: 'https://www.google.com/search?q=state+of+north+dakota+website+compliance+penalty' },
+        'ohio': { name: '🏛️ Ohio', url: 'https://www.google.com/search?q=state+of+ohio+website+compliance+penalty' },
+        'oklahoma': { name: '🌪️ Oklahoma', url: 'https://www.google.com/search?q=state+of+oklahoma+website+compliance+penalty' },
+        'oregon': { name: '🌲 Oregon', url: 'https://www.google.com/search?q=state+of+oregon+website+compliance+penalty' },
+        'pennsylvania': { name: '🔔 Pennsylvania', url: 'https://www.google.com/search?q=state+of+pennsylvania+website+compliance+penalty' },
+        'rhode island': { name: '🏛️ Rhode Island', url: 'https://www.google.com/search?q=state+of+rhode+island+website+compliance+penalty' },
+        'south carolina': { name: '🌴 South Carolina', url: 'https://www.google.com/search?q=state+of+south+carolina+website+compliance+penalty' },
+        'south dakota': { name: '🦅 South Dakota', url: 'https://www.google.com/search?q=state+of+south+dakota+website+compliance+penalty' },
+        'tennessee': { name: '🎸 Tennessee', url: 'https://www.google.com/search?q=state+of+tennessee+website+compliance+penalty' },
+        'texas': { name: '⭐ Texas', url: 'https://www.google.com/search?q=state+of+texas+website+compliance+penalty' },
+        'utah': { name: '🏜️ Utah', url: 'https://www.google.com/search?q=state+of+utah+website+compliance+penalty' },
+        'vermont': { name: '🍁 Vermont', url: 'https://www.google.com/search?q=state+of+vermont+website+compliance+penalty' },
+        'virginia': { name: '🏛️ Virginia', url: 'https://www.google.com/search?q=state+of+virginia+website+compliance+penalty' },
+        'washington': { name: '🌲 Washington', url: 'https://www.google.com/search?q=state+of+washington+website+compliance+penalty' },
+        'west virginia': { name: '⛰️ West Virginia', url: 'https://www.google.com/search?q=state+of+west+virginia+website+compliance+penalty' },
+        'wisconsin': { name: '🧀 Wisconsin', url: 'https://www.google.com/search?q=state+of+wisconsin+website+compliance+penalty' },
+        'wyoming': { name: '🤠 Wyoming', url: 'https://www.google.com/search?q=state+of+wyoming+website+compliance+penalty' }
+    };
+
+    let currentStateUrl = '';
+
+    function selectState(stateName) {
+        document.getElementById('stateSearchInput').value = stateName;
+        // Highlight active pill
+        document.querySelectorAll('.state-pill').forEach(p => p.classList.remove('active'));
+        event.target.classList.add('active');
+        searchState();
+    }
+
+    function searchState() {
+        const input = document.getElementById('stateSearchInput').value.trim().toLowerCase();
+        const resultBox = document.getElementById('stateResultBox');
+        const notFound = document.getElementById('stateNotFound');
+
+        // Reset
+        resultBox.classList.remove('visible');
+        notFound.classList.remove('visible');
+
+        if (!input) return;
+
+        // Find match (exact or partial)
+        let match = null;
+        for (const key in stateData) {
+            if (key === input || key.startsWith(input) || input.includes(key) || key.includes(input)) {
+                match = stateData[key];
+                break;
+            }
+        }
+
+        if (match) {
+            currentStateUrl = match.url;
+            document.getElementById('stateResultName').textContent = match.name + ' — Website Compliance Penalties';
+            document.getElementById('stateViewBtn').href = match.url;
+            document.getElementById('stateResultUrl').textContent = match.url;
+            resultBox.classList.add('visible');
+            notFound.classList.remove('visible');
+        } else {
+            notFound.classList.add('visible');
+            resultBox.classList.remove('visible');
+        }
+    }
+
+    function copyStateLink() {
+        if (!currentStateUrl) return;
+        const btn = document.getElementById('stateCopyBtn');
+        navigator.clipboard.writeText(currentStateUrl).then(function() {
+            btn.innerHTML = '✅ Copied!';
+            btn.classList.add('copied');
+            setTimeout(function() {
+                btn.innerHTML = '📋 Copy Link';
+                btn.classList.remove('copied');
+            }, 2000);
+        }).catch(function() {
+            const ta = document.createElement('textarea');
+            ta.value = currentStateUrl;
+            document.body.appendChild(ta);
+            ta.select();
+            document.execCommand('copy');
+            document.body.removeChild(ta);
+            btn.innerHTML = '✅ Copied!';
+            btn.classList.add('copied');
+            setTimeout(function() {
+                btn.innerHTML = '📋 Copy Link';
+                btn.classList.remove('copied');
+            }, 2000);
+        });
+    }
+
+    // ============================================
+    // INITIALIZATION
     // ============================================
     document.addEventListener('DOMContentLoaded', function() {
-        // Any initialization if needed
         console.log('🦢 WebSwan Script Suite Ready - Judith is ready to call!');
-        
-        // Add double-click protection for copy buttons
         const copyButtons = document.querySelectorAll('.copy-btn');
         copyButtons.forEach(btn => {
-            btn.addEventListener('dblclick', function(e) {
-                e.preventDefault();
-            });
+            btn.addEventListener('dblclick', function(e) { e.preventDefault(); });
         });
     });
 
-    // ============================================
-    // EXTRA: Keyboard shortcut to toggle scripts (Alt+S)
-    // ============================================
+    // Keyboard shortcut Alt+S
     document.addEventListener('keydown', function(e) {
         if (e.altKey && e.key === 's') {
             e.preventDefault();
@@ -624,13 +920,6 @@
         }
     });
 </script>
-
-<!-- 
-    NO TEST BUTTONS! 
-    Just pure, professional cold call scripts for Judith.
-    All links have copy buttons, all scripts are ready to use.
-    WebSwan - Professional. Trustworthy. Effective.
--->
 
 </body>
 </html>
